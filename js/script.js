@@ -26,6 +26,7 @@ Animations?
 Reset button?
 clues with multiple words?
 instructions?
+make buttons accessible for a keyboard
 
 *** Things that needs to happen for the game to work ***
 
@@ -33,6 +34,7 @@ instructions?
     - Function for choosing a random word
         - Making an array for the letter spaces for that random word
             - Displaying the letter spaces amount based on random word
+    - Display the keyboard
 
 *General
     - Store correct guesses            
