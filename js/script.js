@@ -18,25 +18,15 @@ let letterBoxEls;    // Array av DOM-noder: Rutorna där bokstäverna ska stå
 // Funktion som ropas vid vinst eller förlust, gör olika saker beroende tillståndet
 // Funktion som inaktiverar/aktiverar bokstavsknapparna beroende på vilken del av spelet du är på
 
-let correctGuesses = "";
-let wrongGuesses = "";
-let alreadyGuessed = correctGuesses + wrongGuesses;
-let numberOfTries = 6;
-
-
 let startGameBtnEl = document.querySelector('#startGameBtn');
-let hrm = document.querySelector('#gameBoard');
-
 startGameBtnEl.addEventListener('click', startGame);
 
+// Startfunktion
 function startGame () {
-    hrm.style.background = 'lightblue';
     randomWordFunc();
     CreateLetterBoxes();
-    
+    // Lägg till reset function
 }
-
-// Startfunktion
 
 // Funktion som slumpar fram ett ord
 function randomWordFunc() {
@@ -52,41 +42,32 @@ function CreateLetterBoxes () {
         let li = document.createElement('li');
         li.innerHTML = '<input type="text" disabled value="&nbsp">';
         letterBoxEls.appendChild(li);
-       
-        
     } 
 }
 
-//Funktion som körs när du trycker på bokstäverna och gissar bokstav
-function guess(userGuess) {
-    //redan gissat - returnera med log
-    if (alreadyGuessed.indexOf(userGuess) > -1) {
 
-        console.log("already guessed!")
-        return;
-        
-    } else if (selectedWord.includes(userGuess) == true ) {
-      //nytt o rätt - grey out, lägg till bokstav på letterbox
-        alreadyGuessed += userGuess;
-        correctGuesses += userGuess;
-        console.log(alreadyGuessed); 
-        console.log("correct!"); 
-        return;
-        
-        //uppdatera letterboxes
-        //ab func för correct/incorrect?
-    } else {
-        //Nytt o fel - grey out, lägg till bokstav på fel
-        alreadyGuessed += userGuess;
-        wrongGuesses += userGuess;
-        //uppdatera bild
-        //Om sista bild run end function
-        console.log(alreadyGuessed); 
-        console.log("wrong!"); 
-    return;
+// Skriv en callback som hanterar när spelaren trycker på alla bokstavsknappar
+
+letterButtonEls = document.querySelectorAll('#letterButtons > li > button');
+
+for (let i = 0; i < letterButtonEls.length; i++) {
+    letterButtonEls[i].onclick = function guess() {
+        console.log(this.value.toLowerCase());
     }
 }
-/*
-randomWordFunc()
-guess("d")
+/*** Byta ut onclick till click+function ***/
+
+
+//Spara knapptryckningen i en variabel
+// jämföra och uppdatera alreadyGuessed för att disablea knapptryck
+// Loopa över selectedword och hitta matches, när matches === selectedWord.Length = win;
+    // Om det inte är en match, uppdatera:
+        // antal liv, bild, (disable ovan)
+
+
+
+/*    
+    letterBoxEls[positionOfGuessedLetter].value = ...
+
+    
 */
