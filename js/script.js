@@ -14,6 +14,7 @@ let letterButtonEls; // Array av DOM-noder: Knapparna för bokstäverna
 let letterBoxEls;    // Array av DOM-noder: Rutorna där bokstäverna ska stå
 
 let alreadyGuessed = [""];
+let correctGuessed = [""];
 
 let startGameBtnEl = document.querySelector('#startGameBtn');
 startGameBtnEl.addEventListener('click', startGame);
@@ -63,16 +64,22 @@ for (let i = 0; i < letterButtonEls.length; i++) {
   function checkGuess(userGuess) {
     for (let i = 0; i < selectedWord.length; i++) {
     if (selectedWord[i].includes(userGuess) == true) {
-      //get correct amount of letters
-              alreadyGuessed += userGuess;
+    //get right amount of the letter
+            correctGuessed += userGuess;
           }
-          console.log(alreadyGuessed)
         }
+    //add userGuess to alreadyGuessed after correctGuessed loop is done
+        alreadyGuessed += userGuess;
+        console.log(correctGuessed);
+
+        console.log(alreadyGuessed);
+        
         checkEndGame();
   }
  
+    //win and lose conditions
  function checkEndGame() {
-   if (alreadyGuessed.length == selectedWord.length) {
+   if (correctGuessed.length == selectedWord.length) {
      console.log("You won!")
    } else if (guesses === maxGuesses) {
       console.log("You lost!")

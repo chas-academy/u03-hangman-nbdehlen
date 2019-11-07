@@ -42,6 +42,8 @@ make buttons accessible for a keyboard
 
 *Button for resetting the game
 
+Generate the buttons to press, add keyCodes
+
 
 
 */
