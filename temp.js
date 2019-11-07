@@ -33,3 +33,50 @@ function guess(userGuess) {
 randomWordFunc()
 guess("d")
 */
+
+/*
+// Skriv en callback som hanterar när spelaren trycker på alla bokstavsknappar
+
+letterButtonEls = document.querySelectorAll('#letterButtons > li > button');
+
+for (let i = 0; i < letterButtonEls.length; i++) {
+    letterButtonEls[i].addEventListener('click', guess)
+}
+
+    // get the keypress
+    function guess() {
+        console.log(this.value.toLowerCase());
+        let userGuess = this.value.toLowerCase();
+        checkGuess(userGuess);
+        }
+        
+  //Disable the key!! ******************
+
+//Check the keypress
+  function checkGuess(userGuess) {
+    if (selectedWord.includes(userGuess) == true) {
+      //get correct amount of letters
+          for (let i = 0; i < selectedWord.length -1; i++) {
+              alreadyGuessed += userGuess;
+          }
+          console.log(alreadyGuessed)
+        }
+        checkEndGame();
+  }
+ 
+ function checkEndGame() {
+   if (alreadyGuessed.length == selectedWord.length) {
+     console.log("You won!")
+   } else if (guesses === maxGuesses) {
+      console.log("You lost!")
+    } else {
+      console.log("Something wrong in the code")
+    }
+ }
+
+
+
+
+
+
+*/

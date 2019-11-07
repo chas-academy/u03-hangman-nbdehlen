@@ -1,9 +1,11 @@
 // Globala variabler
 
-const wordList = ["ga", "fafafd", "faaaaaaaaaaaaaaaa"];      // Array: med spelets alla ord
+const wordList = ["ga", "fafafd", "fankalabaa"];      // Array: med spelets alla ord
 let selectedWord;    // Sträng: ett av orden valt av en slumpgenerator från arrayen ovan
+let selectedWordPop =[];   // selectedWord array to pop?
 
 let guesses = 0;     // Number: håller antalet gissningar som gjorts
+let maxGuesses = 6;
 let hangmanImg;      // Sträng: sökväg till bild som kommer visas (och ändras) fel svar. t.ex. `/images/h1.png`
 
 let msgHolderEl;     // DOM-nod: Ger meddelande när spelet är över
@@ -11,12 +13,7 @@ let msgHolderEl;     // DOM-nod: Ger meddelande när spelet är över
 let letterButtonEls; // Array av DOM-noder: Knapparna för bokstäverna
 let letterBoxEls;    // Array av DOM-noder: Rutorna där bokstäverna ska stå
 
-// Funktion som startar spelet vid knapptryckning, och då tillkallas andra funktioner
-// Funktion som slumpar fram ett ord
-// Funktion som tar fram bokstävernas rutor, antal rutor beror på vilket ord slumptas fram
-// Funktion som körs när du trycker på bokstäverna och gissar bokstav
-// Funktion som ropas vid vinst eller förlust, gör olika saker beroende tillståndet
-// Funktion som inaktiverar/aktiverar bokstavsknapparna beroende på vilken del av spelet du är på
+let alreadyGuessed = [""];
 
 let startGameBtnEl = document.querySelector('#startGameBtn');
 startGameBtnEl.addEventListener('click', startGame);
@@ -51,11 +48,66 @@ function CreateLetterBoxes () {
 letterButtonEls = document.querySelectorAll('#letterButtons > li > button');
 
 for (let i = 0; i < letterButtonEls.length; i++) {
-    letterButtonEls[i].onclick = function guess() {
-        console.log(this.value.toLowerCase());
+    letterButtonEls[i].addEventListener('click', guess)
+}
+
+    // get the keypress
+    function guess() {
+        let userGuess = this.value.toLowerCase();
+        checkGuess(userGuess);
+        }
+        
+  //Disable the key!! ******************
+
+//Check the keypress
+  function checkGuess(userGuess) {
+    for (let i = 0; i < selectedWord.length; i++) {
+    if (selectedWord[i].includes(userGuess) == true) {
+      //get correct amount of letters
+              alreadyGuessed += userGuess;
+          }
+          console.log(alreadyGuessed)
+        }
+        checkEndGame();
+  }
+ 
+ function checkEndGame() {
+   if (alreadyGuessed.length == selectedWord.length) {
+     console.log("You won!")
+   } else if (guesses === maxGuesses) {
+      console.log("You lost!")
+    } else {
+      console.log("Game not done or something wrong in the code")
+    }
+ }
+
+/*
+function guess(userGuess) {
+  if (guesses < maxGuesses) {
+
+  }
+    if (selectedWord.includes(userGuess) == true ) {
+        alreadyGuessed += userGuess;
+        console.log(alreadyGuessed); 
+        console.log("correct!"); 
+        return;
+    } else {
+        alreadyGuessed += userGuess;
+        wrongGuesses += userGuess;
+        console.log(alreadyGuessed); 
+        console.log("wrong!"); 
+    return;
     }
 }
-/*** Byta ut onclick till click+function ***/
+*/
+
+// Axels steg
+
+// 1. Om bokstaven finns och användaren inte har gissat alla bokstäverna rätt:
+
+
+
+
 
 
 //Spara knapptryckningen i en variabel
