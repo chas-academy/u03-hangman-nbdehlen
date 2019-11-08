@@ -26,6 +26,11 @@ function startGame() {
   randomWordFunc();
   CreateLetterBoxes();
   // ************* disable "starta spelet" or rename to "starta om spelet"
+  //Change image to first one
+  hangman.src = ("images/h0.png");
+  //Change pTag
+  message.innerHTML = "Game is starting! Don't screw it up you dum-dum. This isn't the olympics of being original.";
+  //Move all remove functions into this function
 
 }
 
@@ -39,19 +44,24 @@ function resetGlobal() {
   //************* build all on a true/false of game ongoing instead?
 }
 
+// pTag welcome message
+function pTagFunc() {
+  if (message.value != undefined) {
+    message.childNode.value = 'Game starts!'
+  }
+}
+
 //reset disabled key inputs
 function RemoveLetterButtons() { 
-  //let letterButtons = document.querySelectorAll();
-    //if (letterButtons !=null && selectedWord !=undefined) {}
     for (let i= 0; i< letterButtonEls.length; i++) {
       letterButtonEls[i].disabled = false;
     }
 }
 
-
 function removeLetterBoxes() { 
   let letterBoxes = document.querySelectorAll('#letterBoxes > ul > li');
     if (letterBoxes !=null && selectedWord !=undefined) {
+      // null and undefined here is a shitty fix, != hasChildNodes?
     for (let i= 0; i< selectedWord.length; i++) {
       letterBoxes[i].remove(letterBoxes);
     }
@@ -123,26 +133,27 @@ for (let i = 0; i < letterButtonEls.length; i++) {
  
     //win and lose conditions
     let message = document.querySelector('#message');
-    let pTag = document.createElement('p');
+    //let pTag = document.createElement('p');
 
  function checkEndGame() {
    if (correctGuessed.length === selectedWord.length) {
      console.log("You won!");
 
-     message.innerHTML = ('Congratulations, you won!');
-     message.appendChild(pTag);
+     message.innerHTML = '<p> Congratulations you little sausage, you won! </p>';
+     //message.appendChild(pTag);
    } else if (incorrectGuessed.length === maxGuesses) {
       console.log("You lost!")
 
-     message.innerHTML = ('Congratulations, you reached the maximum amount of guesses!');
-     message.appendChild(pTag);
+      message.innerHTML = '<p> Congratulations you stampcrab, you reached the maximum amount of guesses! </p>';
+     //message.pTag.value = ('Congratulations, you reached the maximum amount of guesses!');
+     //message.appendChild(pTag);
 
     } else {
       // Temporary for detecting bugs etc
       console.log("Game not done or something is wrong")
-
-      message.innerHTML = ('Nothing to see here, chug along little train!');
-      message.appendChild(pTag);
+      message.innerHTML = '<p> Your guesses are totally on point, you fiend! </p>';
+      //message.pTag.value = ('Nothing to see here, chug along little train!');
+      //message.appendChild(pTag);
     }
 
     // **** FUNCTION FOR RESET AND PROMPT PLAY AGAIN ****
