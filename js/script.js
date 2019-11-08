@@ -2,8 +2,6 @@
 
 const wordList = ["ga", "fafafd", "fankalabaa"];      // Array: med spelets alla ord
 let selectedWord;    // Sträng: ett av orden valt av en slumpgenerator från arrayen ovan   // selectedWord array to pop?
-
-//let guesses = 0;     // Number: håller antalet gissningar som gjorts
 let maxGuesses = 6;
 let hangmanImg;      // Sträng: sökväg till bild som kommer visas (och ändras) fel svar. t.ex. `/images/h1.png`
 
@@ -40,6 +38,7 @@ function CreateLetterBoxes () {
         let li = document.createElement('li');
         li.innerHTML = '<input type="text" disabled value="&nbsp">';
         letterBoxEls.appendChild(li);
+        // ******* Add margin or something to make letterBoxes look normal ****
     } 
 }
 
@@ -75,26 +74,38 @@ for (let i = 0; i < letterButtonEls.length; i++) {
     }
 
         alreadyGuessed += userGuess;
-
-        // ********* REPLACE alreadyGuessed with incorrect guess **** //
-        // put for loop inside if and then else can be whatever I want for
-        // alreadyGuessed or incorrect Guess?
-        // or just use if .includes false incorrectGuess += ?
         checkEndGame();
   }
  
     //win and lose conditions
+    let message = document.querySelector('#message');
+    let messagePtag = document.createElement('p');
+
  function checkEndGame() {
    if (correctGuessed.length === selectedWord.length) {
-     console.log("You won!")
+     console.log("You won!");
+
+     message.innerHTML = ('Congratulations, you won!');
+     message.appendChild(messagePtag);
    } else if (incorrectGuessed.length === maxGuesses) {
       console.log("You lost!")
+
+     message.innerHTML = ('Congratulations, you reached the maximum amount of guesses!');
+     message.appendChild(messagePtag);
+
     } else {
-      console.log("Game not done or something wrong in the code")
+      // Temporary for detecting bugs etc
+      console.log("Game not done or something is wrong")
+
+      message.innerHTML = ('Nothing to see here, chug along little train!');
+      message.appendChild(messagePtag);
     }
 
     // **** FUNCTION FOR RESET AND PROMPT PLAY AGAIN ****
-
+    // **** BUTTON FOR RESET **** //
+    // *** BETTER WAY TO MANIPULATE ELEMENTS AND AND COOL EFFECTS *** //
+    // If i can't find a better way, make function out of the dom stuff?
+    // Do something with ::after ??
  }
 
 /*
