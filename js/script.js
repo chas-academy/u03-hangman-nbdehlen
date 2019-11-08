@@ -1,6 +1,6 @@
 // Globala variabler
 
-const wordList = ["ga", "fafafd", "fankalabaa"];      // Array: med spelets alla ord
+const wordList = ["elektravägen", "hackday", "hänggubbe", "aaa"];      // Array: med spelets alla ord
 let selectedWord;    // Sträng: ett av orden valt av en slumpgenerator från arrayen ovan   // selectedWord array to pop?
 let maxGuesses = 6;
 let hangmanImg;      // Sträng: sökväg till bild som kommer visas (och ändras) fel svar. t.ex. `/images/h1.png`
@@ -56,6 +56,13 @@ function RemoveLetterButtons() {
     for (let i= 0; i< letterButtonEls.length; i++) {
       letterButtonEls[i].disabled = false;
     }
+}
+
+//full on disabled key inputs
+function disableLetterButtons() { 
+  for (let i= 0; i< letterButtonEls.length; i++) {
+    letterButtonEls[i].disabled = true;
+  }
 }
 
 function removeLetterBoxes() { 
@@ -137,11 +144,15 @@ for (let i = 0; i < letterButtonEls.length; i++) {
 
  function checkEndGame() {
    if (correctGuessed.length === selectedWord.length) {
+    disableLetterButtons();
      console.log("You won!");
-
      message.innerHTML = '<p> Congratulations you little sausage, you won! </p>';
      //message.appendChild(pTag);
+
+    //document.querySelector('#startGameBtn') = 'Spela igen';
+
    } else if (incorrectGuessed.length === maxGuesses) {
+    disableLetterButtons();
       console.log("You lost!")
 
       message.innerHTML = '<p> Congratulations you stampcrab, you reached the maximum amount of guesses! </p>';
