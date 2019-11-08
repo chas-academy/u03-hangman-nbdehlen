@@ -66,7 +66,7 @@ for (let i = 0; i < letterButtonEls.length; i++) {
     if (selectedWord[i].includes(userGuess) == true) {
       // Get right amount of the letter
       correctGuessed += userGuess;
-      
+
     // Add to letterBoxes
     let letterBoxEls = document.querySelectorAll('#letterBoxes > ul > li > input'); // ********** THIS SHIT NOT WORKING PROPERLY
     
@@ -74,8 +74,11 @@ for (let i = 0; i < letterButtonEls.length; i++) {
     }
   }
 
+  
+  let hangman = document.querySelector('#hangman');
     if (selectedWord.includes(userGuess) == false) {
         incorrectGuessed += userGuess;
+        hangman.src = (`images/h${incorrectGuessed.length}.png`);
     }
 
         alreadyGuessed += userGuess;
@@ -84,26 +87,26 @@ for (let i = 0; i < letterButtonEls.length; i++) {
  
     //win and lose conditions
     let message = document.querySelector('#message');
-    let messagePtag = document.createElement('p');
+    let pTag = document.createElement('p');
 
  function checkEndGame() {
    if (correctGuessed.length === selectedWord.length) {
      console.log("You won!");
 
      message.innerHTML = ('Congratulations, you won!');
-     message.appendChild(messagePtag);
+     message.appendChild(pTag);
    } else if (incorrectGuessed.length === maxGuesses) {
       console.log("You lost!")
 
      message.innerHTML = ('Congratulations, you reached the maximum amount of guesses!');
-     message.appendChild(messagePtag);
+     message.appendChild(pTag);
 
     } else {
       // Temporary for detecting bugs etc
       console.log("Game not done or something is wrong")
 
       message.innerHTML = ('Nothing to see here, chug along little train!');
-      message.appendChild(messagePtag);
+      message.appendChild(pTag);
     }
 
     // **** FUNCTION FOR RESET AND PROMPT PLAY AGAIN ****
