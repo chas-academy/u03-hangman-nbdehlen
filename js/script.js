@@ -64,10 +64,15 @@ for (let i = 0; i < letterButtonEls.length; i++) {
     // loop over letters in selectedWord to find matches with keypress
     for (let i = 0; i < selectedWord.length; i++) {
     if (selectedWord[i].includes(userGuess) == true) {
-    // Get right amount of the letter
-            correctGuessed += userGuess;
-          }
-        }
+      // Get right amount of the letter
+      correctGuessed += userGuess;
+      
+    // Add to letterBoxes
+    let letterBoxEls = document.querySelectorAll('#letterBoxes > ul > li > input'); // ********** THIS SHIT NOT WORKING PROPERLY
+    
+    letterBoxEls[i].value=userGuess.toUpperCase();
+    }
+  }
 
     if (selectedWord.includes(userGuess) == false) {
         incorrectGuessed += userGuess;
