@@ -21,26 +21,32 @@ startGameBtnEl.addEventListener('click', startGame);
 // Startfunktion
 function startGame() {
   removeLetterBoxes();
+  RemoveLetterButtons();
   resetGlobal();
   randomWordFunc();
   CreateLetterBoxes();
   // ************* disable "starta spelet" or rename to "starta om spelet"
-  
+
 }
 
 function resetGlobal() {
-  //reset disabled key inputs
-  //remove guessed letters
   alreadyGuessed = [""];
   correctGuessed = [""];
   incorrectGuessed = [""];
   selectedWord;
   hangmanImg;
   letterButtonEls; 
-
   //************* build all on a true/false of game ongoing instead?
 }
 
+//reset disabled key inputs
+function RemoveLetterButtons() { 
+  //let letterButtons = document.querySelectorAll();
+    //if (letterButtons !=null && selectedWord !=undefined) {}
+    for (let i= 0; i< letterButtonEls.length; i++) {
+      letterButtonEls[i].disabled = false;
+    }
+}
 
 
 function removeLetterBoxes() { 
