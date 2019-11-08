@@ -10,18 +10,46 @@ let msgHolderEl;     // DOM-nod: Ger meddelande när spelet är över
 let letterButtonEls; // Array av DOM-noder: Knapparna för bokstäverna
 let letterBoxEls;    // Array av DOM-noder: Rutorna där bokstäverna ska stå
 
-let alreadyGuessed = [""];
-let correctGuessed = [""];
-let incorrectGuessed = [""];
+alreadyGuessed = [""];
+correctGuessed = [""];
+incorrectGuessed = [""];
+
 
 let startGameBtnEl = document.querySelector('#startGameBtn');
 startGameBtnEl.addEventListener('click', startGame);
 
 // Startfunktion
-function startGame () {
-    randomWordFunc();
-    CreateLetterBoxes();
-    // Lägg till reset function
+function startGame() {
+  removeLetterBoxes();
+  resetGlobal();
+  randomWordFunc();
+  CreateLetterBoxes();
+  // ************* disable "starta spelet" or rename to "starta om spelet"
+  
+}
+
+function resetGlobal() {
+  //reset disabled key inputs
+  //remove guessed letters
+  alreadyGuessed = [""];
+  correctGuessed = [""];
+  incorrectGuessed = [""];
+  selectedWord;
+  hangmanImg;
+  letterButtonEls; 
+
+  //************* build all on a true/false of game ongoing instead?
+}
+
+
+
+function removeLetterBoxes() { 
+  let letterBoxes = document.querySelectorAll('#letterBoxes > ul > li');
+    if (letterBoxes !=null && selectedWord !=undefined) {
+    for (let i= 0; i< selectedWord.length; i++) {
+      letterBoxes[i].remove(letterBoxes);
+    }
+  }
 }
 
 // Funktion som slumpar fram ett ord
@@ -31,9 +59,10 @@ function randomWordFunc() {
 }
 
 // Funktion som lägger till antal letterBoxes
-function CreateLetterBoxes () {
+function CreateLetterBoxes() {
     letterBoxEls = document.querySelector('#letterBoxes > ul');
-
+    // *****************Remove prior letterboxes ***************
+  
     for (let i = 0; i < selectedWord.length; i++) {
         let li = document.createElement('li');
         li.innerHTML = '<input type="text" disabled value="&nbsp">';
@@ -46,6 +75,7 @@ function CreateLetterBoxes () {
 // Event listener for the visual keyboard
 letterButtonEls = document.querySelectorAll('#letterButtons > li > button');
 
+// ***************** Refactor into function w clear attrib at start? ***************
 for (let i = 0; i < letterButtonEls.length; i++) {
     letterButtonEls[i].addEventListener('click', guess)
   }
@@ -114,6 +144,9 @@ for (let i = 0; i < letterButtonEls.length; i++) {
     // *** BETTER WAY TO MANIPULATE ELEMENTS AND AND COOL EFFECTS *** //
     // If i can't find a better way, make function out of the dom stuff?
     // Do something with ::after ??
+    // more interesting images ?
+    // implement support for hints and multiple words
+    // Keyboard input
  }
 
 /*
