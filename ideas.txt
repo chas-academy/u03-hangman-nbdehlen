@@ -1,49 +1,17 @@
-/*
+
 *** IDEAS AND FEATURES***
-Sound?
-Html canvas?
+Sound and video or Html canvas?
 Animations?
-Reset button?
+or just win image?
+
 clues with multiple words?
+
 instructions?
-make buttons accessible for a keyboard
 
-*** Things that needs to happen for the game to work ***
+add keyCodes
 
-*Button click to start the game // Fire off the initial functions
-    - Function for choosing a random word from word array/object
-        - Making an array for the letter spaces for that random word
-            - Displaying the letter spaces amount based on random word
-    - Display the keyboard
+Replace inputs with something else?
 
-*General
-    - Store correct guesses            
-    - Store incorrect guesses
-    - Store already guessed (correct+incorrect?)
-
-*Button click to guess letters matching the word            
-   - Link button to letter
-        - If letter match random word
-            - update it in stored correct guesses
-            - display on letter spaces
-            - display greyed out on keyboard-buttons
-
-        - If letter does not match
-            - update it in stored incorrect guesses
-            - display greyed out on keyboard-buttons
-            - update hangman image
-
-    - Did guesses match all letters in the random word?
-        - end game with message that you won
-
-    - Did guesses > amount of guesses allowed?
-        - end game with message that you lost
+generate buttons from array?
 
 
-*Button for resetting the game
-
-Generate the buttons to press, add keyCodes
-
-
-
-*/
