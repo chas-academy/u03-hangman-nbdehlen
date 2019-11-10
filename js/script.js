@@ -1,9 +1,10 @@
 // Globala variabler
 const wordList = ["elektravägen", "hackday", "hänggubbe", "aaa", "bb", "c"];
-let selectedWord;
+let selectedWord ="";
 let maxGuesses = 6;
 let letterButtonEls;
 let letterBoxEls;
+let gameStarted = false;
 let startGameBtnEl = document.querySelector('#startGameBtn');
 startGameBtnEl.addEventListener('click', startGame);
 
@@ -19,6 +20,7 @@ function startGame() {
   alreadyGuessed = [];
   correctGuessed = [];
   incorrectGuessed = [];
+  gameStarted = true;
 }
 
 // Remove disabled attribute on letterButtonEls
@@ -28,11 +30,10 @@ function removeDisableLetterButtons() {
   }
 }
 
-// Remove letter boxes from previous selectedWord
+// Remove letter boxes from previous selectedWord if there are any
 function removeLetterBoxes() {
   let letterBoxes = document.querySelectorAll("#letterBoxes > ul > li");
-  if (letterBoxes != null && selectedWord != undefined) {
-    // null and undefined here is easily breakable, != hasChildNodes?
+    if (gameStarted === true) {
     for (let i = 0; i < selectedWord.length; i++) {
       letterBoxes[i].remove(letterBoxes);
     }
@@ -116,7 +117,7 @@ function checkEndGame() {
 
   } else if (incorrectGuessed.length === maxGuesses) {
     disableLetterButtons();
-    message.innerHTML = "<p> Congratulations you stampcrab, you reached the maximum amount of guesses and got hung for it! </p>";
+    message.innerHTML = "<p> You reached the maximum amount of guesses and hung for it! </p>";
 
   } else {
     message.innerHTML = "<p> Your guesses are totally on point, you fiend! </p>";
