@@ -5,6 +5,8 @@ let maxGuesses = 6;
 let letterButtonEls;
 let letterBoxEls;
 let gameStarted = false;
+let opacityDefault = 1;
+let overlay = document.querySelector('.img-overlay > img');
 let startGameBtnEl = document.querySelector('#startGameBtn');
 startGameBtnEl.addEventListener('click', startGame);
 
@@ -15,7 +17,7 @@ function startGame() {
   randomWordFunc();
   CreateLetterBoxes();
   buttonClickListener();
-  hangman.src = ("images/h0.png");
+  overlay.style.opacity = 1;
   message.innerHTML = "Game is starting! Don't screw it up dum-dum. This isn't the olympics.";
   alreadyGuessed = [];
   correctGuessed = [];
@@ -96,10 +98,10 @@ function checkGuess(userGuess) {
     }
   }
 
-  let hangman = document.querySelector("#hangman");
   if (selectedWord.includes(userGuess) == false) {
     incorrectGuessed += userGuess;
-    hangman.src = (`images/h${incorrectGuessed.length}.png`);
+    //Opacity for cover image on each incorrect guess. 
+    overlay.style.opacity = opacityDefault - (incorrectGuessed.length/maxGuesses);
   }
 
   alreadyGuessed += userGuess;
