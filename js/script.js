@@ -2,13 +2,14 @@
 const wordList = ["elektravägen", "hackday", "hänggubbe", "aaa", "bb", "c"];
 let selectedWord ="";
 let maxGuesses = 6;
-let letterButtonEls;
+let letterButtonEls = document.querySelectorAll("#letterButtons > li > button");
 let letterBoxEls;
 let gameStarted = false;
 let opacityDefault = 1;
 let overlay = document.querySelector('.img-overlay > img');
 let startGameBtnEl = document.querySelector('#startGameBtn');
 startGameBtnEl.addEventListener('click', startGame);
+let message = document.querySelector("#message");
 
 // Reset-/startfunktion
 function startGame() {
@@ -67,8 +68,6 @@ function CreateLetterBoxes() {
 }
 
 // Event listener for the visual keyboard
-letterButtonEls = document.querySelectorAll("#letterButtons > li > button");
-
 function buttonClickListener() {
   for (let i = 0; i < letterButtonEls.length; i++) {
     letterButtonEls[i].addEventListener("click", guess)
@@ -88,7 +87,7 @@ function guess() {
 function checkGuess(userGuess) {
   // loop over letters in selectedWord to find matches with keypress
   for (let i = 0; i < selectedWord.length; i++) {
-    if (selectedWord[i].includes(userGuess) == true) {
+    if (selectedWord[i].includes(userGuess) === true) {
       // Get right amount of the letter
       correctGuessed += userGuess;
 
@@ -98,9 +97,9 @@ function checkGuess(userGuess) {
     }
   }
 
-  if (selectedWord.includes(userGuess) == false) {
+  if (selectedWord.includes(userGuess) === false) {
     incorrectGuessed += userGuess;
-    //Opacity for cover image on each incorrect guess. 
+    // Opacity for cover image on each incorrect guess. 
     overlay.style.opacity = opacityDefault - (incorrectGuessed.length/maxGuesses);
   }
 
@@ -108,8 +107,7 @@ function checkGuess(userGuess) {
   checkEndGame();
 }
 
-//win and lose conditions
-let message = document.querySelector("#message");
+// Win and lose conditions
 
 function checkEndGame() {
   if (correctGuessed.length === selectedWord.length) {
@@ -123,5 +121,25 @@ function checkEndGame() {
 
   } else {
     message.innerHTML = "<p> Your guesses are totally on point, you fiend! </p>";
+  }
+}
+
+// Audio toggle and volume icon toggle
+let isPlaying = false;
+let scottAudio = document.querySelector('#scott-audio');
+let audioBtn = document.querySelector('.audio-btn');
+audioBtn.addEventListener('click', audioToggle);
+let audioIcon = document.querySelector('#audio-icon');
+
+function audioToggle() {
+  if (isPlaying === false) {
+    scottAudio.play();
+    audioIcon.src="images/volume-highb.png";
+    isPlaying = true;
+
+  } else if (isPlaying === true) {
+    scottAudio.pause();
+    audioIcon.src="images/volume-off.png";
+    isPlaying = false;
   }
 }

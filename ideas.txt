@@ -1,6 +1,8 @@
 
 *** IDEAS AND FEATURES***
-Sound and video or Html canvas?
+video or Html canvas? X (ish. Made 2 images on top of each other with opacity)
+Sound
+wordlist is a dictionary/quote api?
 Animations?
 or just win image?
 
@@ -15,3 +17,23 @@ Replace inputs with something else?
 generate buttons from array?
 
 
+To do:
+styling: cursive text, kransar typ
+make double image responsive
+questions linked to wordLst
+link selectedWord to display message
+Outro on win - fade to white.
+Outro on loss - fade to black.
+
+
+
+Play icon:
+    onload and when game finishes (with long transition / some delay)
+    Covering div w some transparency
+    
+    should include:
+    - Play buttons
+    - instructions
+    - audio icon with toggle available x
+    - 
+    footer - Music by Scott Buckley – www.scottbuckley.com.au X
