@@ -21,7 +21,52 @@ body {
   background: white;
 }
 
-.audio-btn {
+.top-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  margin-right: 80px;
+}
+
+.top-wrapper .instructions {
+  border: none;
+  border-bottom: 2px solid black;
+  background-color: white;
+  font-size: 20px;
+  padding-top: 6px;
+  cursor: pointer;
+}
+
+.top-wrapper #instructions-img {
+  width: 38px;
+  height: auto;
+  position: absolute;
+  top: 0;
+  margin-left: 44px;
+}
+
+.top-wrapper .hidden-dropdown {
+  font-size: 16px;
+  display: none;
+  position: absolute;
+  top: 150px;
+  background: white;
+  max-width: 600px;
+  max-height: 400px;
+  z-index: 2;
+  border: 1px solid black;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.top-wrapper .audio-btn {
   right: 0;
   border: none;
   position: fixed;
@@ -30,12 +75,12 @@ body {
   cursor: pointer;
 }
 
-.audio-btn audio {
+.top-wrapper .audio-btn audio {
   position: absolute;
 }
 
-.audio-btn img {
-  width: 36px;
+.top-wrapper .audio-btn img {
+  width: 32px;
 }
 
 header {
@@ -59,22 +104,19 @@ header #startGameBtn {
       -ms-grid-row-align: center;
       align-self: center;
   padding: 0px 20px 0px 20px;
-  margin: 20px 10px 10px 10px;
+  margin: 20px 10px 0px 10px;
   font-size: 64px;
   font-family: 'Tangerine', cursive;
   background: rgba(255, 255, 255, 0);
   border: hidden;
   cursor: pointer;
   min-height: 80px;
-  -webkit-transition: -webkit-box-shadow 0.1s;
-  transition: -webkit-box-shadow 0.1s;
-  transition: box-shadow 0.1s;
-  transition: box-shadow 0.1s, -webkit-box-shadow 0.1s;
+  -webkit-transition: color 0.2s;
+  transition: color 0.2s;
 }
 
 header #startGameBtn:hover {
-  -webkit-box-shadow: 0px 6px 0px -4px rgba(0, 0, 0, 0.7);
-          box-shadow: 0px 6px 0px -4px rgba(0, 0, 0, 0.7);
+  color: #7e7979;
 }
 
 .wrapper {

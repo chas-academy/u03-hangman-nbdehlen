@@ -19,7 +19,7 @@ function startGame() {
   CreateLetterBoxes();
   buttonClickListener();
   overlay.style.opacity = 1;
-  message.innerHTML = "Game is starting! Don't screw it up dum-dum. This isn't the olympics.";
+  message.innerHTML = "And so it begins...";
   alreadyGuessed = [];
   correctGuessed = [];
   incorrectGuessed = [];
@@ -145,5 +145,28 @@ function audioToggle() {
     scottAudio.pause();
     audioIcon.src="images/volume-off.png";
     isPlaying = false;
+  }
+}
+
+// Dropdown toggle
+let ddToggle = false;
+let ddImg = document.querySelector('#instructions-img');
+let ddBtn = document.querySelector('.instructions');
+ddBtn.addEventListener('click', dropdownToggle);
+let ddHidden = document.querySelector('.hidden-dropdown');
+
+function dropdownToggle() {
+  if (ddToggle === false) {
+ddImg.style.transform= "rotate(-180deg)";
+ddImg.style.transition="transform 0.5s"
+ddHidden.style.display = "block";
+//document.addEventListener('click', dropdownToggle);
+ddToggle = true;
+
+  } else if (ddToggle === true) {
+  ddImg.style.transform ="rotate(0deg)";
+  ddImg.style.transition="transform 0.5s"
+  ddHidden.style.display = "none";
+    ddToggle = false;
   }
 }
