@@ -23,7 +23,11 @@ function startGame() {
   alreadyGuessed = [];
   correctGuessed = [];
   incorrectGuessed = [];
-  gameStarted = true;
+  if (gameStarted === false) {
+    audioToggle();
+    gameStarted = true;
+  }
+  
 }
 
 // Remove disabled attribute on letterButtonEls

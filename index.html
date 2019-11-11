@@ -10,13 +10,13 @@
 <body>
     <div class="audio-wrapper">
         <button class="audio-btn">
-            <audio src="https://www.scottbuckley.com.au/library/wp-content/uploads/2019/02/sb_ascension.mp3" preload=none id="scott-audio"></audio>
+            <audio src="https://www.scottbuckley.com.au/library/wp-content/uploads/2019/02/sb_ascension.mp3" preload="none" loop id="scott-audio"></audio>
             <img src="images/volume-highb.png" alt="" id="audio-icon"/> 
         </button>
     </div>
         <div class="wrapper">
         <header>
-            <h1>Play</h1>
+            <button type="button" id="startGameBtn">Play</button>
             <img src="images/floral-1751088_1280.png">
 
         </header>
@@ -30,10 +30,10 @@
             </div>
 
             <article>
-                <h2></h2>
-                <p></p>
+                    <section id="message">
+                            <!-- This is where messages should appear -->
+                        </section>
             </article>
-            <button class="btn btn--stripe" type="button" id="startGameBtn">Play</button>
             <section id="gameBoard">
                 <ul id="letterButtons">
                     <li><button class="btn btn--stripe" type="button" value="A">A</button></li>
@@ -73,9 +73,6 @@
                         <!-- <li><input type="text" disabled value="C" /></li>
                     <li><input type="text" disabled value="&nbsp;"  /></li> -->
                     </ul>
-                </section>
-                <section id="message">
-                    <!-- This is where messages should appear -->
                 </section>
         </main>
         <footer>

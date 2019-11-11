@@ -18,14 +18,18 @@ generate buttons from array?
 
 
 To do:
+change key styling
+move message to right under image
+move play button to top
+
 styling: cursive text, kransar typ
-make double image responsive
+ X make double image responsive X
 questions linked to wordLst
 link selectedWord to display message
 Outro on win - fade to white.
 Outro on loss - fade to black.
 
-
+button to increase/decrease gusses and so image opacity aswell
 
 Play icon:
     onload and when game finishes (with long transition / some delay)
@@ -36,4 +40,5 @@ Play icon:
     - instructions
     - audio icon with toggle available x
     - 
-    footer - Music by Scott Buckley – www.scottbuckley.com.au X
+    
+    X footer - Music by Scott Buckley – www.scottbuckley.com.au X

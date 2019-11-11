@@ -27,6 +27,7 @@ body {
   position: fixed;
   background: rgba(255, 255, 255, 0);
   z-index: 1;
+  cursor: pointer;
 }
 
 .audio-btn audio {
@@ -37,16 +38,38 @@ body {
   width: 36px;
 }
 
-header img {
-  width: 100%;
-  max-width: 300px;
+header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
-header h1 {
-  margin: 20px 0 0 0;
-  font-size: 4.5em;
-  text-align: center;
+header img {
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 20px;
+}
+
+header #startGameBtn {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  padding: 8px 24px;
+  margin: 20px 10px 10px 10px;
+  font-size: 64px;
   font-family: 'Tangerine', cursive;
+  background: rgba(255, 255, 255, 0);
+  border: none;
+  cursor: pointer;
+}
+
+header #startGameBtn:hover {
+  background: #e6e3e3;
+  border-radius: 30px;
 }
 
 .wrapper {
@@ -123,6 +146,7 @@ footer {
 
 footer p {
   color: white;
+  padding: 10px;
 }
 
 footer p a {
@@ -132,10 +156,6 @@ footer p a {
 
 footer p a:hover {
   text-decoration: underline;
-}
-
-#startGameBtn {
-  font-size: 1.5em;
 }
 
 #gameBoard {

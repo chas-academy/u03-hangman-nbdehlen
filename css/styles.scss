@@ -23,29 +23,41 @@ body {
     position: fixed;
     background: rgba(255,255,255,0);
     z-index: 1;
+    cursor: pointer;
 
     audio {
         position: absolute;
     }
         img {
             width: 36px;
-            
         }
-    
 }
 
 header {
+    display: flex;
+    flex-direction: column;
   
 img {
   width: 100%;
-  max-width: 300px;
+  max-width: 400px;
+  margin-bottom: 20px;
 }
 
- h1 {
-  margin: 20px 0 0 0;
-  font-size: 4.5em;
-  text-align: center;
+#startGameBtn {
+    align-self: center;
+    padding: 8px 24px;
+  margin: 20px 10px 10px 10px;
+  font-size: 64px;
   font-family: 'Tangerine', cursive;
+  background: rgba(255,255,255,0);
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+      //font-weight: bold;
+      background: rgb(230, 227, 227);
+      border-radius: 30px;
+  }
 }
 }
 
@@ -99,6 +111,7 @@ footer {
     background: grey;
     p {
         color: white;
+        padding: 10px;
         a {
             color: white;
             text-decoration: none;
@@ -110,9 +123,7 @@ footer {
     }
 }
 
-#startGameBtn {
-  font-size: 1.5em;
-}
+
 
 #gameBoard {
   padding: 10px 0;
