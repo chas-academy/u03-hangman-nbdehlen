@@ -31,6 +31,8 @@ Outro on loss - fade to black.
 
 button to increase/decrease gusses and so image opacity aswell
 
+Rules dropdown
+
 Play icon:
     onload and when game finishes (with long transition / some delay)
     Covering div w some transparency

@@ -50,7 +50,7 @@ header {
 
 header img {
   width: 100%;
-  max-width: 400px;
+  max-width: 350px;
   margin-bottom: 20px;
 }
 
@@ -58,18 +58,23 @@ header #startGameBtn {
   -ms-flex-item-align: center;
       -ms-grid-row-align: center;
       align-self: center;
-  padding: 8px 24px;
+  padding: 0px 20px 0px 20px;
   margin: 20px 10px 10px 10px;
   font-size: 64px;
   font-family: 'Tangerine', cursive;
   background: rgba(255, 255, 255, 0);
-  border: none;
+  border: hidden;
   cursor: pointer;
+  min-height: 80px;
+  -webkit-transition: -webkit-box-shadow 0.1s;
+  transition: -webkit-box-shadow 0.1s;
+  transition: box-shadow 0.1s;
+  transition: box-shadow 0.1s, -webkit-box-shadow 0.1s;
 }
 
 header #startGameBtn:hover {
-  background: #e6e3e3;
-  border-radius: 30px;
+  -webkit-box-shadow: 0px 6px 0px -4px rgba(0, 0, 0, 0.7);
+          box-shadow: 0px 6px 0px -4px rgba(0, 0, 0, 0.7);
 }
 
 .wrapper {
