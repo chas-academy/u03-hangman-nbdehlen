@@ -18,22 +18,21 @@ generate buttons from array?
 
 
 To do:
-change key styling
- X move message to right under image X
+X change key styling X
+X move message to right under image X
 X move play button to top X
-
- X styling: cursive text, kransar typ X
- X make double image responsive X
+X styling: cursive text, kransar typ X
+X make double image responsive X
 questions linked to wordLst
 link selectedWord to display message
 Outro on win - fade to white.
 Outro on loss - fade to black.
-
+Change to nav and tabindex for menu items
 button to increase/decrease gusses and so image opacity aswell
-
+loop through message w delay on each character
 Rules dropdown
 
-
+Add click outside instructions dropdown when maximized to close it.
 
 Play icon:
     onload and when game finishes (with long transition / some delay)

@@ -8,16 +8,11 @@
 
 body {
   color: #666;
+  /*
   font-family: sans-serif;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  /*height: 100%;
-  min-height: 100vh;*/
+  flex-direction: column;
+  */
   background: white;
 }
 
@@ -33,11 +28,23 @@ body {
   margin-right: 80px;
 }
 
+.top-wrapper #lives {
+  position: absolute;
+  right: 50px;
+}
+
+.top-wrapper #lives p {
+  font-family: Arial;
+  font-size: 16px;
+  padding-top: 7px;
+  color: black;
+}
+
 .top-wrapper .instructions {
   border: none;
-  background-color: white;
+  background: white;
   font-size: 16px;
-  padding-top: 6px;
+  padding-top: 7px;
   cursor: pointer;
   -webkit-box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.7);
           box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.7);
@@ -56,7 +63,7 @@ body {
   width: 28px;
   height: auto;
   position: absolute;
-  top: 2px;
+  top: 3px;
   margin-left: 36px;
 }
 
@@ -75,7 +82,8 @@ body {
 }
 
 .top-wrapper .audio-btn {
-  right: 10px;
+  right: 6px;
+  top: 1px;
   border: none;
   position: fixed;
   background: rgba(255, 255, 255, 0);
@@ -105,7 +113,8 @@ header {
 header img {
   width: 100%;
   max-width: 350px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  margin-top: 4px;
 }
 
 header #startGameBtn {
@@ -113,7 +122,7 @@ header #startGameBtn {
       -ms-grid-row-align: center;
       align-self: center;
   padding: 0px 20px 0px 20px;
-  margin: 0px 10px 30px 10px;
+  margin-bottom: 8px;
   font-size: 64px;
   font-family: 'Tangerine', cursive;
   background: rgba(255, 255, 255, 0);
@@ -176,7 +185,6 @@ main > article {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  padding: 1.5em;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
@@ -201,6 +209,7 @@ ul {
 }
 
 footer {
+  bottom: 0;
   width: 100%;
   background: grey;
 }
@@ -223,7 +232,7 @@ footer p a:hover {
   padding: 10px 0;
 }
 
-#letterButtons {
+#gameBoard li {
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
@@ -238,13 +247,36 @@ footer p a:hover {
           align-items: center;
 }
 
-#letterButtons button:not(last-child) {
+#gameBoard li .keyboard-btn {
+  background: white;
+  color: black;
+  font-size: 18px;
+  padding: 4px;
+  margin: 2px;
+  min-width: 22px;
+  cursor: pointer;
+  -webkit-box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.7);
+          box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.7);
+  border-radius: 4px;
+}
+
+#gameBoard li .keyboard-btn:hover {
+  -webkit-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.7);
+          box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.7);
+}
+
+#gameBoard li .keyboard-btn.keyboard-btn:disabled {
+  background: grey;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+/*#letterButtons button:not(last-child) {
   margin: 4px 4px;
   cursor: pointer;
   max-width: 84px;
   min-width: 84px;
-}
-
+}*/
 #letterBoxes li {
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
@@ -264,74 +296,7 @@ footer p a:hover {
 }
 
 #message {
-  padding-top: 20px;
   font-size: 1.5em;
-}
-
-.btn {
-  -moz-user-select: text;
-  background-color: #fff;
-  background: transparent;
-  border-radius: 6px;
-  border: 0;
-  border: 2px solid #666;
-  color: #666;
-  cursor: pointer;
-  display: block;
-  font: inherit;
-  line-height: normal;
-  margin-bottom: 16px;
-  margin: 0;
-  overflow: visible;
-  padding: 0;
-  padding: 8px 18px 16px;
-  text-decoration: none;
-  text-transform: uppercase;
-}
-
-.btn::-moz-focus-inner {
-  padding: 0;
-  border: 0;
-}
-
-.btn--stripe {
-  overflow: hidden;
-  position: relative;
-}
-
-.btn--stripe:after {
-  content: "";
-  display: block;
-  height: 7px;
-  width: 100%;
-  background-image: -webkit-repeating-linear-gradient(45deg, #666, #666 1px, transparent 2px, transparent 5px);
-  background-image: repeating-linear-gradient(45deg, #666, #666 1px, transparent 2px, transparent 5px);
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  border-top: 1px solid #666;
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  background-size: 7px 7px;
-}
-
-.btn--stripe:disabled {
-  background-color: #999;
-  color: #fff;
-  border-color: #666;
-}
-
-.btn--stripe:hover {
-  background-color: #666;
-  color: #fff;
-  border-color: #000;
-}
-
-.btn--stripe:disabled:after,
-.btn--stripe:hover:after {
-  background-image: -webkit-repeating-linear-gradient(45deg, #fff, #fff 1px, transparent 2px, transparent 5px);
-  background-image: repeating-linear-gradient(45deg, #fff, #fff 1px, transparent 2px, transparent 5px);
-  border-top: 1px solid #000;
 }
 
 .img-base {
@@ -341,12 +306,10 @@ footer p a:hover {
 .img-overlay {
   position: absolute;
   top: 0;
-  /*left: 0;*/
 }
 
 .circle {
   border-radius: 50%;
-  /*display: inline-block;*/
   position: relative;
 }
 

@@ -11,6 +11,7 @@ let startGameBtnEl = document.querySelector('#startGameBtn');
 startGameBtnEl.addEventListener('click', startGame);
 let message = document.querySelector("#message");
 let endGame = false;
+let livesCounter = document.querySelector('#lives > p')
 
 // Reset-/startfunktion
 function startGame() {
@@ -28,8 +29,10 @@ function startGame() {
     scottAudio.play();
   }
   startGameBtnEl.innerHTML="Start over";
+  livesCounter.innerHTML='Chances left: 6';
   gameStarted = true;
   //endGame = false;
+  //document.querySelector('footer').style.bottom = "0px";
 }
 
 // Remove disabled attribute on letterButtonEls
@@ -46,6 +49,7 @@ function removeLetterBoxes() {
     for (let i = 0; i < selectedWord.length; i++) {
       letterBoxes[i].remove(letterBoxes);
     }
+  
   }
 }
 
@@ -64,13 +68,13 @@ function randomWordFunc() {
 // Add letterBoxEls for the chosen random word
 function CreateLetterBoxes() {
   letterBoxEls = document.querySelector("#letterBoxes > ul");
-
   for (let i = 0; i < selectedWord.length; i++) {
     let li = document.createElement("li");
     li.innerHTML = "<input type='text' disabled value='&nbsp'>";
     letterBoxEls.appendChild(li);
     // ******* Add margin or something to make letterBoxes look normal ****
   }
+  
 }
 
 // Event listener for the visual keyboard
@@ -107,6 +111,7 @@ function checkGuess(userGuess) {
     incorrectGuessed += userGuess;
     // Opacity for cover image on each incorrect guess. 
     overlay.style.opacity = opacityDefault - (incorrectGuessed.length/maxGuesses);
+     livesCounter.innerHTML= `Chances left: ${maxGuesses-incorrectGuessed.length}`;
   }
 
   alreadyGuessed += userGuess;
@@ -118,16 +123,16 @@ function checkGuess(userGuess) {
 function checkEndGame() {
   if (correctGuessed.length === selectedWord.length) {
     disableLetterButtons();
-    message.innerHTML = "<p> Congratulations you little sausage, you won! </p>";
+    message.innerHTML = "<p>You solved the riddle. All is well...</p>";
     //startGameBtnEl.innerHTML="Start over";
     //endGame = true;
   } else if (incorrectGuessed.length === maxGuesses) {
     disableLetterButtons();
-    message.innerHTML = "<p> You reached the maximum amount of guesses and hung for it! </p>";
+    message.innerHTML = "<p>There is nothing left of you... </p>";
     //startGameBtnEl.innerHTML="Start over";
     //endGame = true;
   } else {
-    message.innerHTML = "<p> Your guesses are totally on point, you fiend! </p>";
+    message.innerHTML = "<p>You are one step closer to death...</p>";
   }
 }
 
