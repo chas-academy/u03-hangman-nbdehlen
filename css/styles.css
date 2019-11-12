@@ -39,17 +39,17 @@ body {
   border: none;
   border-bottom: 2px solid black;
   background-color: white;
-  font-size: 20px;
+  font-size: 16px;
   padding-top: 6px;
   cursor: pointer;
 }
 
 .top-wrapper #instructions-img {
-  width: 38px;
+  width: 28px;
   height: auto;
   position: absolute;
-  top: 0;
-  margin-left: 44px;
+  top: 2px;
+  margin-left: 36px;
 }
 
 .top-wrapper .hidden-dropdown {
@@ -80,7 +80,8 @@ body {
 }
 
 .top-wrapper .audio-btn img {
-  width: 32px;
+  width: 28px;
+  opacity: 0.75;
 }
 
 header {
@@ -104,19 +105,24 @@ header #startGameBtn {
       -ms-grid-row-align: center;
       align-self: center;
   padding: 0px 20px 0px 20px;
-  margin: 20px 10px 0px 10px;
+  margin: 0px 10px 30px 10px;
   font-size: 64px;
   font-family: 'Tangerine', cursive;
   background: rgba(255, 255, 255, 0);
   border: hidden;
   cursor: pointer;
   min-height: 80px;
+  -webkit-transition: -webkit-box-shadow 0.2s;
+  transition: -webkit-box-shadow 0.2s;
+  transition: box-shadow 0.2s;
+  transition: box-shadow 0.2s, -webkit-box-shadow 0.2s;
   -webkit-transition: color 0.2s;
   transition: color 0.2s;
 }
 
 header #startGameBtn:hover {
-  color: #7e7979;
+  -webkit-box-shadow: 0px 6px 0px -4px rgba(0, 0, 0, 0.7);
+          box-shadow: 0px 6px 0px -4px rgba(0, 0, 0, 0.7);
 }
 
 .wrapper {
