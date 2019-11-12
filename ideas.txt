@@ -19,10 +19,10 @@ generate buttons from array?
 
 To do:
 change key styling
-move message to right under image
-move play button to top
+ X move message to right under image X
+X move play button to top X
 
-styling: cursive text, kransar typ
+ X styling: cursive text, kransar typ X
  X make double image responsive X
 questions linked to wordLst
 link selectedWord to display message
@@ -32,6 +32,8 @@ Outro on loss - fade to black.
 button to increase/decrease gusses and so image opacity aswell
 
 Rules dropdown
+
+
 
 Play icon:
     onload and when game finishes (with long transition / some delay)

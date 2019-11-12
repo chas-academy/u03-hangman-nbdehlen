@@ -10,6 +10,7 @@ let overlay = document.querySelector('.img-overlay > img');
 let startGameBtnEl = document.querySelector('#startGameBtn');
 startGameBtnEl.addEventListener('click', startGame);
 let message = document.querySelector("#message");
+let endGame = false;
 
 // Reset-/startfunktion
 function startGame() {
@@ -23,11 +24,12 @@ function startGame() {
   alreadyGuessed = [];
   correctGuessed = [];
   incorrectGuessed = [];
-  if (gameStarted === false) {
-    audioToggle();
-    gameStarted = true;
+  if (gameStarted === false && isPlaying === true) {
+    scottAudio.play();
   }
-  
+  startGameBtnEl.innerHTML="Start over";
+  gameStarted = true;
+  //endGame = false;
 }
 
 // Remove disabled attribute on letterButtonEls
@@ -117,19 +119,20 @@ function checkEndGame() {
   if (correctGuessed.length === selectedWord.length) {
     disableLetterButtons();
     message.innerHTML = "<p> Congratulations you little sausage, you won! </p>";
-    hangman.src=("https://media.giphy.com/media/uLiEXaouJVkuA/giphy.gif");
-
+    //startGameBtnEl.innerHTML="Start over";
+    //endGame = true;
   } else if (incorrectGuessed.length === maxGuesses) {
     disableLetterButtons();
     message.innerHTML = "<p> You reached the maximum amount of guesses and hung for it! </p>";
-
+    //startGameBtnEl.innerHTML="Start over";
+    //endGame = true;
   } else {
     message.innerHTML = "<p> Your guesses are totally on point, you fiend! </p>";
   }
 }
 
 // Audio toggle and volume icon toggle
-let isPlaying = false;
+let isPlaying = true;
 let scottAudio = document.querySelector('#scott-audio');
 let audioBtn = document.querySelector('.audio-btn');
 audioBtn.addEventListener('click', audioToggle);
@@ -158,14 +161,14 @@ let ddHidden = document.querySelector('.hidden-dropdown');
 function dropdownToggle() {
   if (ddToggle === false) {
 ddImg.style.transform= "rotate(-180deg)";
-ddImg.style.transition="transform 0.5s"
+ddImg.style.transition="transform 0.3s"
 ddHidden.style.display = "block";
 //document.addEventListener('click', dropdownToggle);
 ddToggle = true;
 
   } else if (ddToggle === true) {
   ddImg.style.transform ="rotate(0deg)";
-  ddImg.style.transition="transform 0.5s"
+  ddImg.style.transition="transform 0.3s"
   ddHidden.style.display = "none";
     ddToggle = false;
   }
