@@ -1,5 +1,12 @@
 // Globala variabler
-const wordList = ["elektravägen", "hackday", "hänggubbe", "aaa", "bb", "c"];
+const riddle = ["I am believed to be only one dimensional, and tinier than anything can be, and \n\
+there are many who say that I am the basis of all that we see. What am I?", 
+
+"I am sometimes powerful, I am sometimes complex or deep, I can be blind, lost, or profound. \n\
+What am I?", 
+
+"3", "4", "5"]
+const wordList = ["string", "love", "3", "4", "5"];
 let selectedWord ="";
 let maxGuesses = 6;
 let letterButtonEls = document.querySelectorAll("#letterButtons > li > button");
@@ -12,6 +19,7 @@ startGameBtnEl.addEventListener('click', startGame);
 let message = document.querySelector("#message");
 let endGame = false;
 let livesCounter = document.querySelector('#lives > p')
+//let selectedRiddle = [];
 
 // Reset-/startfunktion
 function startGame() {
@@ -21,7 +29,7 @@ function startGame() {
   CreateLetterBoxes();
   buttonClickListener();
   overlay.style.opacity = 1;
-  message.innerHTML = "And so it begins...";
+  message.innerHTML = `${selectedRiddle}`;
   alreadyGuessed = [];
   correctGuessed = [];
   incorrectGuessed = [];
@@ -63,6 +71,7 @@ function disableLetterButtons() {
 // Choose a random word from wordList array
 function randomWordFunc() {
   selectedWord = wordList[Math.floor(Math.random() * wordList.length)];
+  selectedRiddle = riddle[wordList.indexOf(selectedWord)];
 }
 
 // Add letterBoxEls for the chosen random word
@@ -74,7 +83,6 @@ function CreateLetterBoxes() {
     letterBoxEls.appendChild(li);
     // ******* Add margin or something to make letterBoxes look normal ****
   }
-  
 }
 
 // Event listener for the visual keyboard
@@ -132,7 +140,7 @@ function checkEndGame() {
     //startGameBtnEl.innerHTML="Start over";
     //endGame = true;
   } else {
-    message.innerHTML = "<p>You are one step closer to death...</p>";
+    //message.innerHTML = "<p>You are one step closer to death...</p>";
   }
 }
 
