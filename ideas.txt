@@ -1,0 +1,60 @@
+
+*** IDEAS AND FEATURES***
+video or Html canvas? X (ish. Made 2 images on top of each other with opacity)
+Sound
+wordlist is a dictionary/quote api?
+Animations?
+or just win image?
+
+clues with multiple words?
+
+instructions?
+
+
+
+Replace inputs with something else?
+
+generate buttons from array?
+((button to increase/decrease gusses and so image opacity aswell))
+
+To do:
+X change key styling X
+X move message to right under image X
+X move play button to top X
+X styling: cursive text, kransar typ X
+X make double image responsive X
+X questions linked to wordLst X
+X link selectedWord to display message X
+X loop through message w delay on each character X
+X Rules dropdown X
+X style letterBoxes X
+
+add keyCodes
+
+create timeout function to reuse
+
+Change to nav and tabindex for menu items
+
+Add click outside instructions dropdown when maximized to close it.
+
+
+
+Play icon:
+    onload and when game finishes (with long transition / some delay)
+    Covering div w some transparency
+    
+    should include:
+    - Play buttons
+    - instructions
+    - audio icon with toggle available x
+    - 
+    
+    X footer - Music by Scott Buckley – www.scottbuckley.com.au X
+
+    riddles:
+    I am believed to be only one dimensional, and tinier than anything can be, 
+    and there are many who say that I am the basis of all that we see. What am I?
+    #### A string (from String Theory)
+
+    I am sometimes powerful, I am sometimes complex or deep, I can be blind, lost, or profound. What am I?
+    Love
