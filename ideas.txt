@@ -28,8 +28,7 @@ X link selectedWord to display message X
 X loop through message w delay on each character X
 X Rules dropdown X
 X style letterBoxes X
-
-add keyCodes
+X add keyCodes X
 
 create timeout function to reuse
 
