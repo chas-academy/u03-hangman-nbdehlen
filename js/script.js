@@ -1,14 +1,21 @@
 // Globala variabler
-const riddle = ["I am believed to be only one dimensional, and tinier than anything can be, and \n\
-there are many who say that I am the basis of all that we see. What am I?", 
+const riddle = [
+"I am believed to be only one dimensional, and tinier than anything can be, and \n\
+there are many who say that I am the basis of all that we see. What am I?",
 
 "I am sometimes powerful, I am sometimes complex or deep, I can be blind, lost, or profound. \n\
-What am I?", 
+What am I?",
 
 "I'm a god, a planet, and measurer of heat. Who am I?",
 
-"4", "5"]
-const wordList = ["string", "love", "mercury", "4", "5"];
+"Only one color, but not one size, Stuck at the bottom, yet easily flies. Present in sun, but \n\
+not in rain, Doing no harm, and feeling no pain. What is it?", 
+
+"I make you weak at the worst of all times. I keep you safe, I keep you fine. I make your hands \n\
+ sweat, and your heart grow cold, I visit the weak, but seldom the bold. What am I?"
+]
+
+const wordList = ["string", "love", "mercury", "shadow", "fear"];
 let selectedWord ="";
 let maxGuesses = 6;
 let letterButtonEls = document.querySelectorAll("#letterButtons > li > button");
@@ -19,10 +26,8 @@ let overlay = document.querySelector('.img-overlay > img');
 let startGameBtnEl = document.querySelector('#startGameBtn');
 startGameBtnEl.addEventListener('click', startGame);
 let message = document.querySelector("#message");
-let endGame = false;
 let lives = document.querySelector('#lives');
 let livesCounter = document.querySelector('#lives > p');
-//let selectedRiddle = [];
 
 // Reset-/startfunktion
 function startGame() {
@@ -43,8 +48,6 @@ function startGame() {
   livesCounter.innerHTML='6';
   lives.style.display= "block";
   gameStarted = true;
-  //endGame = false;
-  //document.querySelector('footer').style.bottom = "0px";
 }
 
 // Remove disabled attribute on letterButtonEls
@@ -61,7 +64,6 @@ function removeLetterBoxes() {
     for (let i = 0; i < selectedWord.length; i++) {
       letterBoxes[i].remove(letterBoxes);
     }
-  
   }
 }
 
@@ -85,7 +87,6 @@ function CreateLetterBoxes() {
     let li = document.createElement("li");
     li.innerHTML = "<input type='text' disabled value='&nbsp'>";
     letterBoxEls.appendChild(li);
-    // ******* Add margin or something to make letterBoxes look normal ****
   }
 }
 
@@ -136,17 +137,11 @@ function checkEndGame() {
   if (correctGuessed.length === selectedWord.length) {
     disableLetterButtons();
     message.innerHTML = "<p>You solved the riddle. All is well...</p>";
-    //startGameBtnEl.innerHTML="Start over";
-    //endGame = true;
     imgAnimation(0);
   } else if (incorrectGuessed.length === maxGuesses) {
     disableLetterButtons();
     message.innerHTML = "<p>There is nothing left of you... </p>";
-    //startGameBtnEl.innerHTML="Start over";
-    //endGame = true;
-  } else {
-    //message.innerHTML = "<p>You are one step closer to death...</p>";
-  }
+}
 }
 
 // Audio toggle and volume icon toggle
@@ -194,11 +189,11 @@ ddToggle = true;
 // Image revert animation on win
 function imgAnimation(counter){
   let overlayNumber = Number(overlay.style.opacity)
-  if(counter < 25){
+  if(counter < 50){
     setTimeout(function(){
       counter++;
-      overlay.style.opacity = overlayNumber + 0.04*counter;
+      overlay.style.opacity = overlayNumber + 0.02*counter;
       imgAnimation(counter);
-    }, 120);
+    }, 150);
   }
 }

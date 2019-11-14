@@ -15,7 +15,6 @@ body {
 .top-wrapper {
 display: flex;
 flex-direction: row;
-margin-left: 10px;
 margin-right: 80px;
 
 #lives {
@@ -43,6 +42,7 @@ margin-right: 80px;
 }
 
 .instructions {
+  margin-left: 10px;
   border: none;
   background: rgba(255,255,255,1);
   font-size: 16px;
@@ -79,6 +79,12 @@ margin-right: 80px;
   border: none;
   color: rgba(0,0,0,0.8);
   box-shadow: 0px 4px 30px 0px rgba(0,0,0,0.7);
+  margin: 0 10px;
+  line-height: 1.5rem;
+
+  h2 {
+    margin-bottom: 10px;
+  }
 }
 
 .audio-btn {
@@ -204,7 +210,7 @@ li {
     background: white;
     color: black;
     font-size: 18px;
-    padding: 4px;
+    padding: 8px 4px;
     margin: 4px 2px;
     min-width: 30px;
     cursor: pointer;
@@ -221,29 +227,30 @@ li {
     }
   }
 }
-
+}
 
 /* Where correctly guessed letters appear */
 #letterBoxes {
 
 /* Specific li for Letter boxes */
   li {
-    margin-left: 5px;
+    margin-right: 5px;
 
   input {
   border: 1px solid #666;
-  color: #666;
+  border-radius: 8px;
+  color: white;
+  background: rgba(128,128,128,0.7);
   font-size: 1.5em;
   font-weight: bold;
-  line-height: 2em;
-  margin-top: 1em;
-  padding: 20px 5px;
+  margin-top: 10px;
+  padding: 16px 5px;
   text-align: center;
-  width: 2em;
+  width: 40px;
 }
 }
 }
-}
+
 
  /********** Footer ************/
 footer {

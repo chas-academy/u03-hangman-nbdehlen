@@ -10,12 +10,12 @@ clues with multiple words?
 
 instructions?
 
-add keyCodes
+
 
 Replace inputs with something else?
 
 generate buttons from array?
-
+((button to increase/decrease gusses and so image opacity aswell))
 
 To do:
 X change key styling X
@@ -25,14 +25,19 @@ X styling: cursive text, kransar typ X
 X make double image responsive X
 X questions linked to wordLst X
 X link selectedWord to display message X
-Outro on win - fade to white.
-Outro on loss - fade to black.
+X loop through message w delay on each character X
+X Rules dropdown X
+X style letterBoxes X
+
+add keyCodes
+
+create timeout function to reuse
+
 Change to nav and tabindex for menu items
-button to increase/decrease gusses and so image opacity aswell
-loop through message w delay on each character
-Rules dropdown
 
 Add click outside instructions dropdown when maximized to close it.
+
+
 
 Play icon:
     onload and when game finishes (with long transition / some delay)
