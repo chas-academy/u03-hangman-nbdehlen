@@ -117,7 +117,7 @@ document.addEventListener("keyup", function (e) {
 // Loop through letterButtonEls to find the matching letterButton and disable it
 // Call checkGuess function only if userGuess passed the if statement
 function isLetter(str) {
-  if (str.length === 1 && str.match(/[a-z]/i) && alreadyGuessed.indexOf(str) < 0) {
+  if (str.length === 1 && str.match(/[a-z]/i) && alreadyGuessed.indexOf(str.toLowerCase()) < 0) {
     userGuess = str.toLowerCase();
     for (let i = 0; i < letterButtonEls.length; i++) {
       if (letterButtonEls[i].value == userGuess.toUpperCase()) {
