@@ -23,8 +23,8 @@ X move message to right under image X
 X move play button to top X
 X styling: cursive text, kransar typ X
 X make double image responsive X
-questions linked to wordLst
-link selectedWord to display message
+X questions linked to wordLst X
+X link selectedWord to display message X
 Outro on win - fade to white.
 Outro on loss - fade to black.
 Change to nav and tabindex for menu items

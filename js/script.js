@@ -5,8 +5,10 @@ there are many who say that I am the basis of all that we see. What am I?",
 "I am sometimes powerful, I am sometimes complex or deep, I can be blind, lost, or profound. \n\
 What am I?", 
 
-"3", "4", "5"]
-const wordList = ["string", "love", "3", "4", "5"];
+"I'm a god, a planet, and measurer of heat. Who am I?",
+
+"4", "5"]
+const wordList = ["string", "love", "mercury", "4", "5"];
 let selectedWord ="";
 let maxGuesses = 6;
 let letterButtonEls = document.querySelectorAll("#letterButtons > li > button");
@@ -18,7 +20,8 @@ let startGameBtnEl = document.querySelector('#startGameBtn');
 startGameBtnEl.addEventListener('click', startGame);
 let message = document.querySelector("#message");
 let endGame = false;
-let livesCounter = document.querySelector('#lives > p')
+let lives = document.querySelector('#lives');
+let livesCounter = document.querySelector('#lives > p');
 //let selectedRiddle = [];
 
 // Reset-/startfunktion
@@ -37,7 +40,8 @@ function startGame() {
     scottAudio.play();
   }
   startGameBtnEl.innerHTML="Start over";
-  livesCounter.innerHTML='Chances left: 6';
+  livesCounter.innerHTML='6';
+  lives.style.display= "block";
   gameStarted = true;
   //endGame = false;
   //document.querySelector('footer').style.bottom = "0px";
@@ -68,7 +72,7 @@ function disableLetterButtons() {
   }
 }
 
-// Choose a random word from wordList array
+// Choose a random word from wordList array and corresponding riddle
 function randomWordFunc() {
   selectedWord = wordList[Math.floor(Math.random() * wordList.length)];
   selectedRiddle = riddle[wordList.indexOf(selectedWord)];
@@ -119,7 +123,7 @@ function checkGuess(userGuess) {
     incorrectGuessed += userGuess;
     // Opacity for cover image on each incorrect guess. 
     overlay.style.opacity = opacityDefault - (incorrectGuessed.length/maxGuesses);
-     livesCounter.innerHTML= `Chances left: ${maxGuesses-incorrectGuessed.length}`;
+     livesCounter.innerHTML= `${maxGuesses-incorrectGuessed.length}`;
   }
 
   alreadyGuessed += userGuess;
@@ -134,6 +138,7 @@ function checkEndGame() {
     message.innerHTML = "<p>You solved the riddle. All is well...</p>";
     //startGameBtnEl.innerHTML="Start over";
     //endGame = true;
+    imgAnimation(0);
   } else if (incorrectGuessed.length === maxGuesses) {
     disableLetterButtons();
     message.innerHTML = "<p>There is nothing left of you... </p>";
@@ -176,13 +181,24 @@ function dropdownToggle() {
 ddImg.style.transform= "rotate(-180deg)";
 ddImg.style.transition="transform 0.3s"
 ddHidden.style.display = "block";
-//document.addEventListener('click', dropdownToggle);
 ddToggle = true;
-
-  } else if (ddToggle === true) {
+}
+ else if (ddToggle === true) {
   ddImg.style.transform ="rotate(0deg)";
   ddImg.style.transition="transform 0.3s"
   ddHidden.style.display = "none";
     ddToggle = false;
+  }
+}
+
+// Image revert animation on win
+function imgAnimation(counter){
+  let overlayNumber = Number(overlay.style.opacity)
+  if(counter < 25){
+    setTimeout(function(){
+      counter++;
+      overlay.style.opacity = overlayNumber + 0.04*counter;
+      imgAnimation(counter);
+    }, 120);
   }
 }
