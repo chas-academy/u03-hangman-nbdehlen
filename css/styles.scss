@@ -13,17 +13,12 @@ html {
 
 body {
   color: #666;
-  /*
-  font-family: sans-serif;
-  display: flex;
-  flex-direction: column;
-  */
+  //display: flex;
+  //flex-direction: column;
   background: rgb(255, 255, 255);
   //height: 100%;
-  //min-height: 100vh;
-
 }
-
+    /**************** Top area ***********************/
 .top-wrapper {
 display: flex;
 flex-direction: row;
@@ -31,12 +26,16 @@ margin-left: 10px;
 margin-right: 80px;
 
 #lives {
-    position: absolute;
+    position: fixed;
     right: 50px;
+    background: rgb(255,255,255);
+    z-index: 1;
+    padding: 0 4px 2px 4px;
+    border-radius: 4px;
   p {
     font-family: Arial;
     font-size: 16px;
-    padding-top: 7px;
+    padding-top: 4px;
     color: black;
 
   }
@@ -97,6 +96,15 @@ margin-right: 80px;
 }
 }
 
+/*************** Wrapper for Start game header and Main ***************/
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/************** Start game header ************/
 header {
     display: flex;
     flex-direction: column;
@@ -129,54 +137,114 @@ img {
 }
 }
 
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+/************** Main ***************/
 
 main {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 0 4px;
 }
 
-main:after {
-  content: "\00a0"; /* &nbsp; */
-  display: block;
-  margin-top: var(--space);
-  height: 0px;
-  visibility: hidden;
+/* Centerpiece image */
+.circle {
+  border-radius: 50%;
+  position: relative;
+
+  .img-overlay {
+    position: absolute;
+    top: 0;
+  }
+
+  img {
+    border-radius: 50%;
+    display: block;
+    border: 1px solid white;
+    width: 100%;
+    height: auto;
+    max-width: 600px;
+  }
+
+  &:after {
+    content: "";
+    display: block;
+    background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0) 10%, rgb(255, 255, 255) 70%, rgba(255, 255, 255, 1));
+    border-radius: 50%;
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    right: -2px;
+    bottom: -2px;
+  }
 }
 
-main > article {
-  display: flex;
-  flex-direction: column;
-  //padding-bottom: 16px;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-  -ms-flex-align: center;
-  align-items: center;
+/* Display message from game */
+#message {
+  font-size: 1.3rem;
 }
 
-main > article > button {
-  align-content: center;
-  justify-content: center;
-}
+/* Gameboard */
+#gameBoard {
+  padding: 10px 0;
 
-main > article > h2 {
-  text-align: center;
-  color: #777;
-  margin-bottom: 1.5em;
-}
-
-ul {
+  /* Common li for Letter buttons and Letter boxes */
+li {
+  display: inline-flex;
   list-style-type: none;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  
+  .keyboard-btn {
+    background: white;
+    color: black;
+    font-size: 18px;
+    padding: 4px;
+    margin: 4px 2px;
+    min-width: 30px;
+    cursor: pointer;
+    box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.7);
+    border-radius: 4px;
+
+    &:hover {
+      box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.7);
+    }
+
+    &.keyboard-btn:disabled {
+      background: grey;
+        box-shadow: none;
+      
+    }
+  }
 }
 
+
+/* Where correctly guessed letters appear */
+#letterBoxes {
+
+/* Specific li for Letter boxes */
+  li {
+    margin-left: 5px;
+
+  input {
+  border: 1px solid #666;
+  color: #666;
+  font-size: 1.5em;
+  font-weight: bold;
+  line-height: 2em;
+  margin-top: 1em;
+  padding: 20px 5px;
+  text-align: center;
+  width: 2em;
+}
+}
+}
+}
+
+ /********** Footer ************/
 footer {
-  bottom: 0;
   //position: absolute;
+  bottom: 0;
   width: 100%;
   background: grey;
 
@@ -193,100 +261,4 @@ footer {
       }
     }
   }
-}
-
-
-#gameBoard {
-  padding: 10px 0;
-
-li {
-  display: inline-flex;
-  list-style-type: none;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-
-  .keyboard-btn {
-    background: white;
-    color: black;
-    font-size: 18px;
-    padding: 4px;
-    margin: 2px;
-    min-width: 22px;
-    cursor: pointer;
-    box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.7);
-    border-radius: 4px;
-
-    &:hover {
-      box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.7);
-    }
-
-    &.keyboard-btn:disabled {
-      background: grey;
-        box-shadow: none;
-      
-    }
-  }
-}
-}
-
-#letterButtons {
-
-}
-
-/*#letterButtons button:not(last-child) {
-  margin: 4px 4px;
-  cursor: pointer;
-  max-width: 84px;
-  min-width: 84px;
-}*/
-
-#letterBoxes li {
-  display: inline-flex;
-}
-
-#letterBoxes input {
-  border: 1px solid #666;
-  color: #666;
-  font-size: 1.5em;
-  font-weight: bold;
-  line-height: 2em;
-  margin-top: 1em;
-  padding: 20px 5px;
-  text-align: center;
-  width: 2em;
-}
-
-#message {
-  font-size: 1.5em;
-}
-
-.img-base {
-  position: relative;
-    }
-  
-    .img-overlay {
-  position: absolute;
-    top: 0;
-    }
-
-    .circle {
-    border-radius: 50%;
-    position: relative;
-}
-.circle img {
-    border-radius: 50%;
-    display: block;
-    border:1px solid white;
-    width: 100%;
-    height: auto;
-    max-width: 600px;
-}
-.circle:after {
-    content: "";
-    display: block;
-    background: radial-gradient(ellipse at center, rgba(255,255,255,0) 10%,rgb(255, 255, 255) 70%,rgba(255,255,255,1));
-    border-radius: 50%;
-    position: absolute;
-    top: -1px; left: -1px; right: -2px; bottom: -2px;
 }

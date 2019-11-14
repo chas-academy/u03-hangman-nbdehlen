@@ -8,14 +8,10 @@
 
 body {
   color: #666;
-  /*
-  font-family: sans-serif;
-  display: flex;
-  flex-direction: column;
-  */
   background: white;
 }
 
+/**************** Top area ***********************/
 .top-wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -29,14 +25,18 @@ body {
 }
 
 .top-wrapper #lives {
-  position: absolute;
+  position: fixed;
   right: 50px;
+  background: white;
+  z-index: 1;
+  padding: 0 4px 2px 4px;
+  border-radius: 4px;
 }
 
 .top-wrapper #lives p {
   font-family: Arial;
   font-size: 16px;
-  padding-top: 7px;
+  padding-top: 4px;
   color: black;
 }
 
@@ -100,6 +100,21 @@ body {
   opacity: 0.75;
 }
 
+/*************** Wrapper for Start game header and Main ***************/
+.wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+/************** Start game header ************/
 header {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -142,19 +157,7 @@ header #startGameBtn:hover {
           box-shadow: 0px 9px 0px -4px rgba(0, 0, 0, 0.7);
 }
 
-.wrapper {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
+/************** Main ***************/
 main {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -166,70 +169,51 @@ main {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  padding: 0 4px;
 }
 
-main:after {
-  content: "\00a0";
-  /* &nbsp; */
+/* Centerpiece image */
+.circle {
+  border-radius: 50%;
+  position: relative;
+}
+
+.circle .img-overlay {
+  position: absolute;
+  top: 0;
+}
+
+.circle img {
+  border-radius: 50%;
   display: block;
-  margin-top: var(--space);
-  height: 0px;
-  visibility: hidden;
-}
-
-main > article {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-main > article > button {
-  -ms-flex-line-pack: center;
-      align-content: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
-main > article > h2 {
-  text-align: center;
-  color: #777;
-  margin-bottom: 1.5em;
-}
-
-ul {
-  list-style-type: none;
-}
-
-footer {
-  bottom: 0;
+  border: 1px solid white;
   width: 100%;
-  background: grey;
+  height: auto;
+  max-width: 600px;
 }
 
-footer p {
-  color: white;
-  padding: 10px;
+.circle:after {
+  content: "";
+  display: block;
+  background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0) 10%, white 70%, white);
+  border-radius: 50%;
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  right: -2px;
+  bottom: -2px;
 }
 
-footer p a {
-  color: white;
-  text-decoration: none;
+/* Display message from game */
+#message {
+  font-size: 1.3rem;
 }
 
-footer p a:hover {
-  text-decoration: underline;
-}
-
+/* Gameboard */
 #gameBoard {
   padding: 10px 0;
+  /* Common li for Letter buttons and Letter boxes */
+  /* Where correctly guessed letters appear */
 }
 
 #gameBoard li {
@@ -252,8 +236,8 @@ footer p a:hover {
   color: black;
   font-size: 18px;
   padding: 4px;
-  margin: 2px;
-  min-width: 22px;
+  margin: 4px 2px;
+  min-width: 30px;
   cursor: pointer;
   -webkit-box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.7);
           box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.7);
@@ -271,19 +255,15 @@ footer p a:hover {
           box-shadow: none;
 }
 
-/*#letterButtons button:not(last-child) {
-  margin: 4px 4px;
-  cursor: pointer;
-  max-width: 84px;
-  min-width: 84px;
-}*/
-#letterBoxes li {
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
+#gameBoard #letterBoxes {
+  /* Specific li for Letter boxes */
 }
 
-#letterBoxes input {
+#gameBoard #letterBoxes li {
+  margin-left: 5px;
+}
+
+#gameBoard #letterBoxes li input {
   border: 1px solid #666;
   color: #666;
   font-size: 1.5em;
@@ -295,42 +275,24 @@ footer p a:hover {
   width: 2em;
 }
 
-#message {
-  font-size: 1.5em;
-}
-
-.img-base {
-  position: relative;
-}
-
-.img-overlay {
-  position: absolute;
-  top: 0;
-}
-
-.circle {
-  border-radius: 50%;
-  position: relative;
-}
-
-.circle img {
-  border-radius: 50%;
-  display: block;
-  border: 1px solid white;
+/********** Footer ************/
+footer {
+  bottom: 0;
   width: 100%;
-  height: auto;
-  max-width: 600px;
+  background: grey;
 }
 
-.circle:after {
-  content: "";
-  display: block;
-  background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0) 10%, white 70%, white);
-  border-radius: 50%;
-  position: absolute;
-  top: -1px;
-  left: -1px;
-  right: -2px;
-  bottom: -2px;
+footer p {
+  color: white;
+  padding: 10px;
+}
+
+footer p a {
+  color: white;
+  text-decoration: none;
+}
+
+footer p a:hover {
+  text-decoration: underline;
 }
 /*# sourceMappingURL=styles.css.map */
