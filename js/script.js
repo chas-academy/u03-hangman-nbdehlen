@@ -1,3 +1,15 @@
+
+/*********************************************************************************************
+ * I'm terribly sorry there are no meatballs to go with the spaghetti :P                     *
+ *                                                                                           *
+ * I had a think on how to apply any of the OOP concepts but ultimately found it confusing   *
+ * and would love input on how I could refactor some of my code.                             *
+ *                                                                                           *
+ * Apart from const riddle and const wordList what parts would make sense to put in modules? *
+ *                                                                                           *
+ * Apologies for the DOM selectors and event listeners being all over the place              *
+ ********************************************************************************************/
+
 // Globala variabler
 const riddle = [
 "I am believed to be only one dimensional, and tinier than anything can be, and \n\
@@ -14,9 +26,8 @@ not in rain, Doing no harm, and feeling no pain. What is it?",
 "I make you weak at the worst of all times. I keep you safe, I keep you fine. I make your hands \n\
  sweat, and your heart grow cold, I visit the weak, but seldom the bold. What am I?"
 ]
-
 const wordList = ["string", "love", "mercury", "shadow", "fear"];
-let selectedWord ="";
+let selectedWord = "";
 let maxGuesses = 6;
 let letterButtonEls = document.querySelectorAll("#letterButtons > li > button");
 let letterBoxEls;
@@ -44,9 +55,9 @@ function startGame() {
   if (gameStarted === false && isPlaying === true) {
     scottAudio.play();
   }
-  startGameBtnEl.innerHTML="Start over";
-  livesCounter.innerHTML='6';
-  lives.style.display= "block";
+  startGameBtnEl.innerHTML = "Start over";
+  livesCounter.innerHTML = '6';
+  lives.style.display = "block";
   gameStarted = true;
 }
 
@@ -60,7 +71,7 @@ function removeDisableLetterButtons() {
 // Remove letter boxes from previous selectedWord if there are any
 function removeLetterBoxes() {
   let letterBoxes = document.querySelectorAll("#letterBoxes > ul > li");
-    if (gameStarted === true) {
+  if (gameStarted === true) {
     for (let i = 0; i < selectedWord.length; i++) {
       letterBoxes[i].remove(letterBoxes);
     }
@@ -97,6 +108,26 @@ function buttonClickListener() {
   }
 }
 
+// Event listener for the physical keyboard
+document.addEventListener("keyup", function (e) {
+  isLetter(e.key)
+})
+
+// Check if keypress matches A-Z case insensitive and letter not already guessed.
+// Loop through letterButtonEls to find the matching letterButton and disable it
+// Call checkGuess function only if userGuess passed the if statement
+function isLetter(str) {
+  if (str.length === 1 && str.match(/[a-z]/i) && alreadyGuessed.indexOf(str) < 0) {
+    userGuess = str;
+    for (let i = 0; i < letterButtonEls.length; i++) {
+      if (letterButtonEls[i].value == userGuess.toUpperCase()) {
+        letterButtonEls[i].disabled = true;
+      }
+    }
+    checkGuess(userGuess);
+  }
+}
+
 // Get the keypress
 function guess() {
   let userGuess = this.value.toLowerCase();
@@ -123,16 +154,14 @@ function checkGuess(userGuess) {
   if (selectedWord.includes(userGuess) === false) {
     incorrectGuessed += userGuess;
     // Opacity for cover image on each incorrect guess. 
-    overlay.style.opacity = opacityDefault - (incorrectGuessed.length/maxGuesses);
-     livesCounter.innerHTML= `${maxGuesses-incorrectGuessed.length}`;
+    overlay.style.opacity = opacityDefault - (incorrectGuessed.length / maxGuesses);
+    livesCounter.innerHTML = `${maxGuesses-incorrectGuessed.length}`;
   }
-
   alreadyGuessed += userGuess;
   checkEndGame();
 }
 
 // Win and lose conditions
-
 function checkEndGame() {
   if (correctGuessed.length === selectedWord.length) {
     disableLetterButtons();
@@ -141,7 +170,7 @@ function checkEndGame() {
   } else if (incorrectGuessed.length === maxGuesses) {
     disableLetterButtons();
     message.innerHTML = "<p>There is nothing left of you... </p>";
-}
+  }
 }
 
 // Audio toggle and volume icon toggle
@@ -154,12 +183,12 @@ let audioIcon = document.querySelector('#audio-icon');
 function audioToggle() {
   if (isPlaying === false) {
     scottAudio.play();
-    audioIcon.src="images/volume-highb.png";
+    audioIcon.src = "images/volume-highb.png";
     isPlaying = true;
 
   } else if (isPlaying === true) {
     scottAudio.pause();
-    audioIcon.src="images/volume-off.png";
+    audioIcon.src = "images/volume-off.png";
     isPlaying = false;
   }
 }
@@ -173,26 +202,25 @@ let ddHidden = document.querySelector('.hidden-dropdown');
 
 function dropdownToggle() {
   if (ddToggle === false) {
-ddImg.style.transform= "rotate(-180deg)";
-ddImg.style.transition="transform 0.3s"
-ddHidden.style.display = "block";
-ddToggle = true;
-}
- else if (ddToggle === true) {
-  ddImg.style.transform ="rotate(0deg)";
-  ddImg.style.transition="transform 0.3s"
-  ddHidden.style.display = "none";
+    ddImg.style.transform = "rotate(-180deg)";
+    ddImg.style.transition = "transform 0.3s"
+    ddHidden.style.display = "block";
+    ddToggle = true;
+  } else if (ddToggle === true) {
+    ddImg.style.transform = "rotate(0deg)";
+    ddImg.style.transition = "transform 0.3s"
+    ddHidden.style.display = "none";
     ddToggle = false;
   }
 }
 
 // Image revert animation on win
-function imgAnimation(counter){
+function imgAnimation(counter) {
   let overlayNumber = Number(overlay.style.opacity)
-  if(counter < 50){
-    setTimeout(function(){
+  if (counter < 50) {
+    setTimeout(function () {
       counter++;
-      overlay.style.opacity = overlayNumber + 0.02*counter;
+      overlay.style.opacity = overlayNumber + 0.02 * counter;
       imgAnimation(counter);
     }, 150);
   }
