@@ -59,6 +59,9 @@ function startGame() {
   livesCounter.innerHTML = '6';
   lives.style.display = "block";
   gameStarted = true;
+
+  // Event listener for the physical keyboard
+  document.addEventListener("keyup", keyboardPress, true);
 }
 
 // Remove disabled attribute on letterButtonEls
@@ -108,10 +111,10 @@ function buttonClickListener() {
   }
 }
 
-// Event listener for the physical keyboard
-document.addEventListener("keyup", function (e) {
-  isLetter(e.key)
-})
+// Function for key press
+    function keyboardPress (e) {
+    isLetter(e.key);
+  }
 
 // Check if keypress matches A-Z case insensitive and letter not already guessed.
 // Loop through letterButtonEls to find the matching letterButton and disable it
@@ -162,15 +165,18 @@ function checkGuess(userGuess) {
 }
 
 // Win and lose conditions
+// remove Event listener for the physical keyboard
 function checkEndGame() {
   if (correctGuessed.length === selectedWord.length) {
     disableLetterButtons();
     message.innerHTML = "<p>You solved the riddle. All is well...</p>";
     imgAnimation(0);
+    document.removeEventListener("keyup", keyboardPress, true);
   } else if (incorrectGuessed.length === maxGuesses) {
     disableLetterButtons();
     message.innerHTML = "<p>There is nothing left of you... </p>";
-  }
+    document.removeEventListener("keyup", keyboardPress, true);
+}
 }
 
 // Audio toggle and volume icon toggle
