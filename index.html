@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="sv">
+<html lang="en">
+
 <head>
     <meta charset='utf-8'>
     <meta name='description' content=''>
@@ -11,7 +12,7 @@
 
 <body>
 
-    <div class="top-wrapper">  
+    <div class="top-wrapper">
         <button class="instructions">Instructions
 
             <img id="instructions-img" src="images/dropdownsmall.png" alt="">
@@ -22,17 +23,19 @@
                 Press the Play button at the top of the page to start a game. <br>
                 Click letters on the displayed keyboard to guess letters for the riddle
                 or use your keyboard.
-
             </p>
         </div>
-        <div id="lives"> <p></p> </div>
+        <div id="lives">
+            <p></p>
+        </div>
         <button class="audio-btn" type="button">
-                <audio src="https://www.scottbuckley.com.au/library/wp-content/uploads/2019/02/sb_ascension.mp3"
-                    preload="none" loop id="scott-audio"></audio>
-                <!--<audio src="audio/A_A_Aalto-Focus.mp3" preload="none" loop id="scott-audio"></audio>-->
-                <img src="images/volume-highb.png" alt="" id="audio-icon" />
-            </button>
+            <audio src="https://www.scottbuckley.com.au/library/wp-content/uploads/2019/02/sb_ascension.mp3"
+                preload="none" loop id="scott-audio"></audio>
+            <!--<audio src="audio/A_A_Aalto-Focus.mp3" preload="none" loop id="scott-audio"></audio>-->
+            <img src="images/volume-highb.png" alt="" id="audio-icon" />
+        </button>
     </div>
+    
     <div class="wrapper">
         <header>
             <button type=button id="startGameBtn">Play</button>
@@ -48,14 +51,12 @@
                 </div>
             </div>
 
-           
-                <section id="message">
-                    <!-- This is where messages should appear -->
-                </section>
-           
+
+            <section id="message">
+            </section>
+
             <section id="gameBoard">
                 <ul id="letterButtons">
-                    <!-- <li><button class="btn btn--stripe" type="button" value="A">A</button></li> -->
                     <li><button class="keyboard-btn" type="button" value="A">A</button></li>
                     <li><button class="keyboard-btn" type="button" value="B">B</button></li>
                     <li><button class="keyboard-btn" type="button" value="C">C</button></li>
@@ -84,20 +85,15 @@
                     <li><button class="keyboard-btn" type="button" value="Z">Z</button></li>
                 </ul>
                 <section id="letterBoxes">
-                    <!-- This is where the matched letters should appear, these should match the number of letters in the selected word -->
                     <ul>
-                        <!-- <li><input type="text" disabled value="C" /></li>
-                    <li><input type="text" disabled value="&nbsp;"  /></li> -->
                     </ul>
                 </section>
         </main>
     </div>
-    
-        <footer>
-            <p> <em> Music by Scott Buckley – <a href="www.scottbuckley.com.au">www.scottbuckley.com.au</a> </em></p>
-        </footer>
-        <script type="text/javascript" src="js/script.js"></script>
-    
+    <footer>
+        <p> <em> Music by Scott Buckley – <a href="www.scottbuckley.com.au">www.scottbuckley.com.au</a> </em></p>
+    </footer>
+    <script type="text/javascript" src="js/script.js"></script>
 </body>
 
 </html>

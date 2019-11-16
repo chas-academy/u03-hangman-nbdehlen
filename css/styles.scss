@@ -1,4 +1,3 @@
-@charset "UTF-8";
 @import url('https://fonts.googleapis.com/css?family=Tangerine&display=swap');
 
 * {
@@ -25,7 +24,7 @@ margin-right: 80px;
     display: none;
 
   p {
-    font-family: Arial;
+    font-family: Arial, sans-serif;
     font-size: 16px;
     font-weight: bold;
     color: white;
@@ -127,7 +126,7 @@ img {
   padding: 0px 20px 0px 20px;
   margin-bottom: 8px;
   font-size: 64px;
-  font-family: 'Tangerine', cursive;
+  font-family: 'Tangerine', sans-serif;
   background: rgba(255,255,255,0);
   border: hidden;
   cursor: pointer;
@@ -184,7 +183,10 @@ main {
 /* Display message from game */
 #message {
   font-size: 1.3rem;
-  padding: 6px 0px;
+  color: black;
+  padding: 6px 2px 6px 2px;
+  margin-top: 2px;
+  background: rgb(234, 234, 234);
 }
 
 /* Gameboard */
