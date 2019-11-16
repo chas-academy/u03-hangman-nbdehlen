@@ -10,8 +10,8 @@
  * Apologies for the DOM selectors and event listeners being all over the place              *
  ********************************************************************************************/
 
+ 
 // Global variables, event listeners and DOM elements
-
 const riddle = [
 "I am believed to be only one dimensional, and tinier than anything can be, and \n\
 there are many who say that I am the basis of all that we see. What am I?",
@@ -29,38 +29,43 @@ not in rain, Doing no harm, and feeling no pain. What is it?",
 ]
 const wordList = ["string", "love", "mercury", "shadow", "fear"];
 let selectedWord = "";
-let maxGuesses = 6;
-let letterButtonEls = document.querySelectorAll("#letterButtons > li > button");
-let letterBoxEls = document.querySelector("#letterBoxes > ul");
+let alreadyGuessed = [];
+let correctGuessed = [];
+let incorrectGuessed = [];
+const maxGuesses = 6;
+const letterButtonEls = document.querySelectorAll("#letterButtons > li > button");
+const letterBoxEls = document.querySelector("#letterBoxes > ul");
+const overlay = document.querySelector('.img-overlay > img');
+const message = document.querySelector("#message");
+const lives = document.querySelector('#lives');
+const livesCounter = document.querySelector('#lives > p');
+const opacityDefault = 1; //adjust 
+
+// Start game global
 let gameStarted = false;
-let overlay = document.querySelector('.img-overlay > img');
-let startGameBtnEl = document.querySelector('#startGameBtn');
+const startGameBtnEl = document.querySelector('#startGameBtn');
 startGameBtnEl.addEventListener('click', startGame);
-let message = document.querySelector("#message");
-let lives = document.querySelector('#lives');
-let livesCounter = document.querySelector('#lives > p');
-let opacityDefault = 1; //adjust 
 
 // Audio global
 let isPlaying = true;
-let scottAudio = document.querySelector('#scott-audio');
-let audioBtn = document.querySelector('.audio-btn');
+const scottAudio = document.querySelector('#scott-audio');
+const audioBtn = document.querySelector('.audio-btn');
 audioBtn.addEventListener('click', audioToggle);
-let audioIcon = document.querySelector('#audio-icon');
+const audioIcon = document.querySelector('#audio-icon');
 
 // Dropdown global
 let ddToggle = false;
-let ddImg = document.querySelector('#instructions-img');
-let ddBtn = document.querySelector('.instructions');
+const ddImg = document.querySelector('#instructions-img');
+const ddBtn = document.querySelector('.instructions');
 ddBtn.addEventListener('click', dropdownToggle);
-let ddHidden = document.querySelector('.hidden-dropdown');
+const ddHidden = document.querySelector('.hidden-dropdown');
 
 // Reset-/startfunktion
 function startGame() {
   removeLetterBoxes();
   removeDisableLetterButtons();
   randomWordFunc();
-  CreateLetterBoxes();
+  createLetterBoxes();
   buttonClickListener();
 
   overlay.style.opacity = 1;
@@ -68,7 +73,7 @@ function startGame() {
   alreadyGuessed = [];
   correctGuessed = [];
   incorrectGuessed = [];
-  if (gameStarted === false && isPlaying === true) {
+  if (!gameStarted && isPlaying) {
     scottAudio.play();
   }
   startGameBtnEl.innerHTML = "Start over";
@@ -90,7 +95,7 @@ function removeDisableLetterButtons() {
 // Remove letter boxes from previous selectedWord if there are any
 function removeLetterBoxes() {
   let letterBoxes = document.querySelectorAll("#letterBoxes > ul > li");
-  if (gameStarted === true) {
+  if (gameStarted) {
     for (let i = 0; i < selectedWord.length; i++) {
       letterBoxes[i].remove(letterBoxes);
     }
@@ -111,7 +116,7 @@ function randomWordFunc() {
 }
 
 // Add letterBoxEls for the chosen random word
-function CreateLetterBoxes() {
+function createLetterBoxes() {
   for (let i = 0; i < selectedWord.length; i++) {
     let li = document.createElement("li");
     li.innerHTML = "<input type='text' disabled value='&nbsp'>";
@@ -159,7 +164,7 @@ function guess() {
 function checkGuess(userGuess) {
   // loop over letters in selectedWord to find matches with keypress
   for (let i = 0; i < selectedWord.length; i++) {
-    if (selectedWord[i].includes(userGuess) === true) {
+    if (selectedWord[i].includes(userGuess)) {
       // Get right amount of the letter
       correctGuessed += userGuess;
 
@@ -169,7 +174,7 @@ function checkGuess(userGuess) {
     }
   }
 
-  if (selectedWord.includes(userGuess) === false) {
+  if (!selectedWord.includes(userGuess)) {
     incorrectGuessed += userGuess;
     // Opacity for cover image on each incorrect guess. 
     overlay.style.opacity -= (1 / maxGuesses);
@@ -185,7 +190,9 @@ function checkEndGame() {
   if (correctGuessed.length === selectedWord.length) {
     disableLetterButtons();
     message.innerHTML = "<p>You solved the riddle. All is well...</p>";
-    imgAnimation(0); //Call image animation back to full opacity
+    overlay.style.transition = 'opacity 2s';
+    overlay.style.opacity = 1;
+
     document.removeEventListener("keyup", keyboardPress, true);
   } else if (incorrectGuessed.length === maxGuesses) {
     disableLetterButtons();
@@ -194,43 +201,30 @@ function checkEndGame() {
   }
 }
 
-// Audio toggle and volume icon toggle
+// Audio toggle and volume icon toggle (no need for if/else of return the if)
 function audioToggle() {
-  if (isPlaying === false) {
+  if (!isPlaying) {
     scottAudio.play();
     audioIcon.src = "images/volume-highb.png";
     isPlaying = true;
-
-  } else if (isPlaying === true) {
+    return;
+  }
     scottAudio.pause();
     audioIcon.src = "images/volume-off.png";
     isPlaying = false;
-  }
 }
 
-// Dropdown toggle
+// Dropdown toggle (no need for if/else of return the if)
 function dropdownToggle() {
-  if (ddToggle === false) {
+  if (!ddToggle) {
     ddImg.style.transform = "rotate(-180deg)"; // Rotate dropdown icon
     ddImg.style.transition = "transform 0.3s" // Animate dropdown icon change of state
     ddHidden.style.display = "block";         // Unhide dropdown
     ddToggle = true;
-  } else if (ddToggle === true) {
+    return;
+  } 
     ddImg.style.transform = "rotate(0deg)";
     ddImg.style.transition = "transform 0.3s"
     ddHidden.style.display = "none";
     ddToggle = false;
-  }
-}
-
-// Image revert animation on win
-function imgAnimation(counter) {
-  let overlayNumber = Number(overlay.style.opacity);
-  if (counter < 50) {
-    setTimeout(function () {
-      counter++;
-      overlay.style.opacity = overlayNumber + 0.02 * counter;
-      imgAnimation(counter);
-    }, 150);
-  }
 }
