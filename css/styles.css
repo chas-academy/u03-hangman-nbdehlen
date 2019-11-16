@@ -63,11 +63,8 @@ body {
 }
 
 .top-wrapper #instructions-img {
-  width: 28px;
+  width: 18px;
   height: auto;
-  position: absolute;
-  top: 3px;
-  margin-left: 36px;
 }
 
 .top-wrapper .hidden-dropdown {
