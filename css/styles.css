@@ -268,15 +268,25 @@ main {
 }
 
 /* Where correctly guessed letters appear */
-#letterBoxes {
+#letterBoxes ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   /* Specific li for Letter boxes */
 }
 
-#letterBoxes li {
+#letterBoxes ul li {
   margin-right: 5px;
 }
 
-#letterBoxes li input {
+#letterBoxes ul li input {
   border: 1px solid #666;
   border-radius: 8px;
   color: white;

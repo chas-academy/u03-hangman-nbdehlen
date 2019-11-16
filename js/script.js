@@ -10,7 +10,7 @@
  * Apologies for the DOM selectors and event listeners being all over the place              *
  ********************************************************************************************/
 
- 
+
 // Global variables, event listeners and DOM elements
 const riddle = [
 "I am believed to be only one dimensional, and tinier than anything can be, and \n\
@@ -201,7 +201,7 @@ function checkEndGame() {
   }
 }
 
-// Audio toggle and volume icon toggle (no need for if/else of return the if)
+// Audio toggle and volume icon toggle (no need for if/else)
 function audioToggle() {
   if (!isPlaying) {
     scottAudio.play();
@@ -214,7 +214,7 @@ function audioToggle() {
     isPlaying = false;
 }
 
-// Dropdown toggle (no need for if/else of return the if)
+// Dropdown toggle (no need for if/else)
 function dropdownToggle() {
   if (!ddToggle) {
     ddImg.style.transform = "rotate(-180deg)"; // Rotate dropdown icon

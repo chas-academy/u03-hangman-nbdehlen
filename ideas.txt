@@ -5,12 +5,8 @@ Sound
 wordlist is a dictionary/quote api?
 Animations?
 or just win image?
-
 clues with multiple words?
-
 instructions?
-
-
 
 Replace inputs with something else?
 
@@ -36,5 +32,6 @@ Change to nav and tabindex for menu items
 Add click outside instructions dropdown when maximized to close it.
 
 Rename funtions and what is passed to things that make sense
+Try to replace for loops with forEach where I can
 
 
