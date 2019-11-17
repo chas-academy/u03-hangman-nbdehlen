@@ -301,11 +301,6 @@ main {
   padding: 16px 5px;
   text-align: center;
   max-width: 40px;
-  /*
-      line-height: 0;   //  <-- Prova 
-      display:block;
-      z-index: 1;
-      */
 }
 
 /********** Footer ************/

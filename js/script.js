@@ -1,16 +1,3 @@
-
-/*********************************************************************************************
- * I'm terribly sorry there are no meatballs to go with the spaghetti :P                     *
- *                                                                                           *
- * I had a think on how to apply any of the OOP concepts but ultimately found it confusing   *
- * and would love input on how I could refactor some of my code.                             *
- *                                                                                           *
- * Apart from const riddle and const wordList what parts would make sense to put in modules? *
- *                                                                                           *
- * Apologies for the DOM selectors and event listeners being all over the place              *
- ********************************************************************************************/
-
-
 // Global variables, event listeners and DOM elements
 const riddle = [
 "I am believed to be only one dimensional, and tinier than anything can be, and \n\
@@ -39,7 +26,7 @@ const overlay = document.querySelector('.img-overlay > img');
 const message = document.querySelector("#message");
 const lives = document.querySelector('#lives');
 const livesCounter = document.querySelector('#lives > p');
-const opacityDefault = 1; //adjust 
+const opacityDefault = 1;
 
 // Start game global
 let gameStarted = false;
@@ -60,7 +47,7 @@ const ddBtn = document.querySelector('.instructions');
 ddBtn.addEventListener('click', dropdownToggle);
 const ddHidden = document.querySelector('.hidden-dropdown');
 
-// Reset-/startfunktion
+// Reset-/startfunction
 function startGame() {
   removeLetterBoxes();
   removeDisableLetterButtons();
@@ -73,9 +60,11 @@ function startGame() {
   alreadyGuessed = [];
   correctGuessed = [];
   incorrectGuessed = [];
+
   if (!gameStarted && isPlaying) {
     scottAudio.play();
   }
+  
   startGameBtnEl.innerHTML = "Restart";
   livesCounter.innerHTML = '6';
   lives.style.display = "block";
