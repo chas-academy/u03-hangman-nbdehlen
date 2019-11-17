@@ -184,14 +184,16 @@ main {
 #message {
   font-size: 1.3rem;
   color: black;
-  padding: 6px 2px 6px 2px;
+  padding: 6px;
   margin-top: 2px;
   background: rgb(234, 234, 234);
+  width: 100%;
+  border-radius: 8px;
 }
 
 /* Gameboard */
 #gameBoard {
-  padding: 10px 0;
+  padding: 6px 0;
 
   /* Common li for Letter buttons and Letter boxes */
 li {
@@ -234,6 +236,8 @@ li {
   /* Specific li for Letter boxes */
   li {
     margin-right: 5px;
+    // position: relative; // <-- Läste i en tråd att detta i kombination med z-index 1 i parent har löst liknande problem
+    // z-index: 1;
 
     input {
       border: 1px solid #666;
@@ -243,9 +247,14 @@ li {
       font-size: 1.5em;
       font-weight: bold;
       margin-top: 10px;
-      padding: 16px 5px;
+      padding: 16px 5px; // <-- prova att ersätta med height: ~40px;
       text-align: center;
-      width: 40px;
+      max-width: 40px; // alternativt width: 40px;
+      /*
+      line-height: 0;   //  <-- Prova 
+      display:block;
+      z-index: 1;
+      */
     }
   }
 }

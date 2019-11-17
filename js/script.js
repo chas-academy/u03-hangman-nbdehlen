@@ -28,7 +28,7 @@ not in rain, Doing no harm, and feeling no pain. What is it?",
  sweat, and your heart grow cold, I visit the weak, but seldom the bold. What am I?"
 ]
 const wordList = ["string", "love", "mercury", "shadow", "fear"];
-let selectedWord = "";
+let selectedWord = new String;
 let alreadyGuessed = [];
 let correctGuessed = [];
 let incorrectGuessed = [];
@@ -76,7 +76,7 @@ function startGame() {
   if (!gameStarted && isPlaying) {
     scottAudio.play();
   }
-  startGameBtnEl.innerHTML = "Start over";
+  startGameBtnEl.innerHTML = "Restart";
   livesCounter.innerHTML = '6';
   lives.style.display = "block";
   gameStarted = true;
@@ -169,8 +169,8 @@ function checkGuess(userGuess) {
       correctGuessed += userGuess;
 
       // Add to letterBoxes
-      listInput = letterBoxEls.querySelectorAll("li > input");
-      listInput[i].value = userGuess.toUpperCase();
+      listInput = letterBoxEls.querySelectorAll("li");
+      listInput[i].innerHTML = `<input type='text' value=${userGuess.toUpperCase()}>`;
     }
   }
 
