@@ -281,6 +281,8 @@ main {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  list-style-type: none;
+  margin-bottom: 5px;
   /* Specific li for Letter boxes */
 }
 

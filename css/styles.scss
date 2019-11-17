@@ -232,6 +232,8 @@ li {
     display: flex;
     flex-direction: row;
     justify-content: center;
+    list-style-type: none;
+    margin-bottom: 5px;
 
   /* Specific li for Letter boxes */
   li {
