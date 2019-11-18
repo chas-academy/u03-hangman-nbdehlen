@@ -20,13 +20,13 @@ let alreadyGuessed = [];
 let correctGuessed = [];
 let incorrectGuessed = [];
 const maxGuesses = 6;
+const opacityDefault = 1;
 const letterButtonEls = document.querySelectorAll("#letterButtons > li > button");
 const letterBoxEls = document.querySelector("#letterBoxes > ul");
-const overlay = document.querySelector('.img-overlay > img');
-const message = document.querySelector("#message");
-const lives = document.querySelector('#lives');
-const livesCounter = document.querySelector('#lives > p');
-const opacityDefault = 1;
+const imgOverlayEl = document.querySelector('.img-overlay > img');
+const gameMessageEl = document.querySelector("#message");
+const livesEl = document.querySelector('#lives');
+const livesCounterEl = document.querySelector('#lives > p');
 
 // Start game global
 let gameStarted = false;
@@ -35,39 +35,39 @@ startGameBtnEl.addEventListener('click', startGame);
 
 // Audio global
 let isPlaying = true;
-const scottAudio = document.querySelector('#scott-audio');
-const audioBtn = document.querySelector('.audio-btn');
-audioBtn.addEventListener('click', audioToggle);
-const audioIcon = document.querySelector('#audio-icon');
+const scottAudioEl = document.querySelector('#scott-audio');
+const audioBtnEl = document.querySelector('.audio-btn');
+audioBtnEl.addEventListener('click', audioToggle);
+const audioIconEl = document.querySelector('#audio-icon');
 
 // Dropdown global
 let ddToggle = false;
-const ddImg = document.querySelector('#instructions-img');
-const ddBtn = document.querySelector('.instructions');
-ddBtn.addEventListener('click', dropdownToggle);
-const ddHidden = document.querySelector('.hidden-dropdown');
+const ddImgEl = document.querySelector('#instructions-img');
+const ddBtnEl = document.querySelector('.instructions');
+ddBtnEl.addEventListener('click', dropdownToggle);
+const ddHiddenEl = document.querySelector('.hidden-dropdown');
 
 // Reset-/startfunction
 function startGame() {
   removeLetterBoxes();
   removeDisableLetterButtons();
-  randomWordFunc();
+  randomWord();
   createLetterBoxes();
   buttonClickListener();
 
-  overlay.style.opacity = 1;
-  message.innerHTML = `${selectedRiddle}`;
+  imgOverlayEl.style.opacity = 1;
+  gameMessageEl.innerHTML = selectedRiddle;
   alreadyGuessed = [];
   correctGuessed = [];
   incorrectGuessed = [];
 
   if (!gameStarted && isPlaying) {
-    scottAudio.play();
+    scottAudioEl.play();
   }
   
   startGameBtnEl.innerHTML = "Restart";
-  livesCounter.innerHTML = '6';
-  lives.style.display = "block";
+  livesCounterEl.innerHTML = '6';
+  livesEl.style.display = "block";
   gameStarted = true;
 
   // Event listener for the physical keyboard
@@ -99,7 +99,7 @@ function disableLetterButtons() {
 }
 
 // Choose a random word from wordList array and corresponding riddle
-function randomWordFunc() {
+function randomWord() {
   selectedWord = wordList[Math.floor(Math.random() * wordList.length)];
   selectedRiddle = riddle[wordList.indexOf(selectedWord)];
 }
@@ -113,35 +113,40 @@ function createLetterBoxes() {
   }
 }
 
-// Event listener for the visual keyboard
-function buttonClickListener() {
-  for (let i = 0; i < letterButtonEls.length; i++) {
-    letterButtonEls[i].addEventListener("click", guess)
-  }
-}
-
-// Function for key press
+// Function for keypress guess
     function keyboardPress (e) {
-    isLetter(e.key);
+      keypressIsLetter(e.key);
   }
 
 // Check if keypress matches A-Z case insensitive and letter not already guessed.
-// Loop through letterButtonEls to find the matching letterButton and disable it
-// Call checkGuess function only if userGuess passed the if statement
-function isLetter(str) {
-  if (str.length === 1 && str.match(/[a-z]/i) && alreadyGuessed.indexOf(str.toLowerCase()) < 0) {
-    userGuess = str.toLowerCase();
-    for (let i = 0; i < letterButtonEls.length; i++) {
-      if (letterButtonEls[i].value == userGuess.toUpperCase()) {
-        letterButtonEls[i].disabled = true;
-      }
-    }
+// Call checkGuess function only if keyboardGuess passed the if statement
+function keypressIsLetter(keyboardGuess) {
+  if (keyboardGuess.length === 1 && keyboardGuess.match(/[a-z]/i) && 
+  alreadyGuessed.indexOf(keyboardGuess.toLowerCase()) < 0) {
+    userGuess = keyboardGuess.toLowerCase();
+    disableLetterButtonKeyboard();
     checkGuess(userGuess);
   }
 }
 
-// Get the keypress
-function guess() {
+// Loop through letterButtonEls to find the matching letterButton and disable it
+function disableLetterButtonKeyboard() {
+  for (let i = 0; i < letterButtonEls.length; i++) {
+    if (letterButtonEls[i].value === userGuess.toUpperCase()) {
+      letterButtonEls[i].disabled = true;
+    }
+  }
+}
+
+// Event listener for the visual keyboard
+function buttonClickListener() {
+  for (let i = 0; i < letterButtonEls.length; i++) {
+    letterButtonEls[i].addEventListener("click", clickGuess)
+  }
+}
+
+// Get the mouse click guess
+function clickGuess() {
   let userGuess = this.value.toLowerCase();
   // Disable the key
   this.disabled = true;
@@ -166,8 +171,8 @@ function checkGuess(userGuess) {
   if (!selectedWord.includes(userGuess)) {
     incorrectGuessed += userGuess;
     // Opacity for cover image on each incorrect guess. 
-    overlay.style.opacity -= (1 / maxGuesses);
-    livesCounter.innerHTML = `${maxGuesses-incorrectGuessed.length}`;
+    imgOverlayEl.style.opacity -= (1 / maxGuesses);
+    livesCounterEl.innerHTML = maxGuesses-incorrectGuessed.length;
   }
   alreadyGuessed += userGuess;
   checkEndGame();
@@ -178,14 +183,13 @@ function checkGuess(userGuess) {
 function checkEndGame() {
   if (correctGuessed.length === selectedWord.length) {
     disableLetterButtons();
-    message.innerHTML = "<p>You solved the riddle. All is well...</p>";
-    overlay.style.transition = 'opacity 2s';
-    overlay.style.opacity = 1;
-
+    gameMessageEl.innerHTML = "<p>You solved the riddle. All is well...</p>";
+    imgOverlayEl.style.transition = 'opacity 2s';
+    imgOverlayEl.style.opacity = 1;
     document.removeEventListener("keyup", keyboardPress, true);
   } else if (incorrectGuessed.length === maxGuesses) {
     disableLetterButtons();
-    message.innerHTML = "<p>There is nothing left of you... </p>";
+    gameMessageEl.innerHTML = "<p>There is nothing left of you... </p>";
     document.removeEventListener("keyup", keyboardPress, true);
   }
 }
@@ -193,27 +197,27 @@ function checkEndGame() {
 // Audio toggle and volume icon toggle (no need for if/else)
 function audioToggle() {
   if (!isPlaying) {
-    scottAudio.play();
-    audioIcon.src = "images/volume-highb.png";
+    scottAudioEl.play();
+    audioIconEl.src = "images/volume-highb.png";
     isPlaying = true;
     return;
   }
-    scottAudio.pause();
-    audioIcon.src = "images/volume-off.png";
+  scottAudioEl.pause();
+  audioIconEl.src = "images/volume-off.png";
     isPlaying = false;
 }
 
 // Dropdown toggle (no need for if/else)
 function dropdownToggle() {
   if (!ddToggle) {
-    ddImg.style.transform = "rotate(-180deg)"; // Rotate dropdown icon
-    ddImg.style.transition = "transform 0.3s" // Animate dropdown icon change of state
-    ddHidden.style.display = "block";         // Unhide dropdown
+    ddImgEl.style.transform = "rotate(-180deg)"; // Rotate dropdown icon
+    ddImgEl.style.transition = "transform 0.3s" // Animate dropdown icon change of state
+    ddHiddenEl.style.display = "block";         // Unhide dropdown
     ddToggle = true;
     return;
   } 
-    ddImg.style.transform = "rotate(0deg)";
-    ddImg.style.transition = "transform 0.3s"
-    ddHidden.style.display = "none";
+  ddImgEl.style.transform = "rotate(0deg)";
+  ddImgEl.style.transition = "transform 0.3s"
+  ddHiddenEl.style.display = "none";
     ddToggle = false;
 }
