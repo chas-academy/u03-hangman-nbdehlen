@@ -27,11 +27,12 @@ X style letterBoxes X
 X add keyCodes X
 X create timeout function to reuse X
 X footer - Music by Scott Buckley – www.scottbuckley.com.au X
+X Rename funtions and what is passed to things that make sense X
 
 Change to nav and tabindex for menu items
 Add click outside instructions dropdown when maximized to close it.
 
-Rename funtions and what is passed to things that make sense
+
 Try to replace for loops with forEach where I can
 
 

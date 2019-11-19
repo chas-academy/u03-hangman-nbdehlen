@@ -11,38 +11,36 @@
 </head>
 
 <body>
-
-    <div class="top-wrapper">
+    <nav class="top-wrapper">
         <button class="instructions">Instructions
-
             <img id="instructions-img" src="images/dropdownsmall.png" alt="">
         </button>
         <div class="hidden-dropdown">
             <h2>Instructions</h2>
             <p>Solve the riddle before you run out of lives. <br>
-                Press the Play button at the top of the page to start a game. <br>
-                Click letters on the displayed keyboard to guess letters for the riddle
-                or use your keyboard.
+                Press <strong>Play</strong> at the top of the page to start a game. <br>
+                Use the provided keyboard or your own to guess letters.
             </p>
         </div>
+
+        <header>
+            <button type=button id="startGameBtn" aria-label="Play game">Play</button>
+        </header>
+
         <div id="lives">
-            <p></p>
+            <p aria-label="Lives left"></p>
         </div>
-        <button class="audio-btn" type="button">
+
+        <button class="audio-btn" type="button" aria-label="Toggle audio">
             <audio src="https://www.scottbuckley.com.au/library/wp-content/uploads/2019/02/sb_ascension.mp3"
                 preload="none" loop id="scott-audio"></audio>
-            <!--<audio src="audio/A_A_Aalto-Focus.mp3" preload="none" loop id="scott-audio"></audio>-->
-            <img src="images/volume-highb.png" alt="Mute sound icon" id="audio-icon" />
+            <img src="images/volume-highb.png" alt="Sound icon" id="audio-icon" />
         </button>
-    </div>
+    </nav>
 
     <div class="wrapper">
-        <header>
-            <button type=button id="startGameBtn">Play</button>
-            <img src="images/floral-1751088_1280.png" alt="">
-        </header>
         <main>
-
+            <img src="images/floral-1751088_1280.png" alt="">
             <div class="circle">
                 <img src="images/face-2-600-1.jpg" alt="Portrait of death" />
                 <div class="img-overlay">
@@ -50,7 +48,7 @@
                 </div>
             </div>
 
-            <section id="message">
+            <section id="message" aria-label="Game message">
             </section>
 
             <section id="gameBoard">
@@ -90,7 +88,8 @@
         </main>
     </div>
     <footer>
-        <p> <em> Music by Scott Buckley – <a href="www.scottbuckley.com.au">www.scottbuckley.com.au</a> </em></p>
+        <p> <em> Music by Scott Buckley – <a href="www.scottbuckley.com.au"
+                    aria-label="Artist website">www.scottbuckley.com.au</a> </em></p>
     </footer>
     <script src="js/script.js"></script>
 </body>

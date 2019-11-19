@@ -20,30 +20,13 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  margin-right: 80px;
-}
-
-.top-wrapper #lives {
-  background: url("../images/heart.png") no-repeat center;
-  position: fixed;
-  right: 50px;
-  z-index: 3;
-  display: none;
-}
-
-.top-wrapper #lives p {
-  font-family: Arial, sans-serif;
-  font-size: 16px;
-  font-weight: bold;
-  color: white;
-  text-align: center;
-  width: 34px;
-  height: 34px;
-  padding-top: 8px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  /* Start game */
 }
 
 .top-wrapper .instructions {
-  margin-left: 10px;
   border: none;
   background: white;
   font-size: 16px;
@@ -55,6 +38,8 @@ body {
   transition: -webkit-box-shadow 0.1s;
   transition: box-shadow 0.1s;
   transition: box-shadow 0.1s, -webkit-box-shadow 0.1s;
+  position: absolute;
+  left: 10px;
 }
 
 .top-wrapper .instructions:hover {
@@ -83,12 +68,59 @@ body {
   color: rgba(0, 0, 0, 0.8);
   -webkit-box-shadow: 0px 4px 30px 0px rgba(0, 0, 0, 0.7);
           box-shadow: 0px 4px 30px 0px rgba(0, 0, 0, 0.7);
-  margin: 0 10px;
+  margin: 0px 10px 0px 3px;
   line-height: 1.5rem;
 }
 
 .top-wrapper .hidden-dropdown h2 {
   margin-bottom: 10px;
+}
+
+.top-wrapper header {
+  margin: 20px 0px 10px 0px;
+}
+
+.top-wrapper #startGameBtn {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  padding: 0px 20px 0px 20px;
+  margin-bottom: 8px;
+  font-size: 64px;
+  font-family: 'Tangerine', sans-serif;
+  background: rgba(255, 255, 255, 0);
+  border: hidden;
+  cursor: pointer;
+  -webkit-transition: -webkit-box-shadow 0.1s;
+  transition: -webkit-box-shadow 0.1s;
+  transition: box-shadow 0.1s;
+  transition: box-shadow 0.1s, -webkit-box-shadow 0.1s;
+  -webkit-box-shadow: 0px 6px 0px -4px rgba(0, 0, 0, 0.7);
+          box-shadow: 0px 6px 0px -4px rgba(0, 0, 0, 0.7);
+}
+
+.top-wrapper #startGameBtn:hover {
+  -webkit-box-shadow: 0px 9px 0px -4px rgba(0, 0, 0, 0.7);
+          box-shadow: 0px 9px 0px -4px rgba(0, 0, 0, 0.7);
+}
+
+.top-wrapper #lives {
+  background: url("../images/heart.png") no-repeat center;
+  position: fixed;
+  right: 50px;
+  z-index: 3;
+  display: none;
+}
+
+.top-wrapper #lives p {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  width: 34px;
+  height: 34px;
+  padding-top: 8px;
 }
 
 .top-wrapper .audio-btn {
@@ -124,49 +156,6 @@ body {
           align-items: center;
 }
 
-/************** Start game header ************/
-header {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-}
-
-header img {
-  width: 100%;
-  max-width: 350px;
-  margin-bottom: 10px;
-  margin-top: 4px;
-}
-
-header #startGameBtn {
-  -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
-      align-self: center;
-  padding: 0px 20px 0px 20px;
-  margin-bottom: 8px;
-  font-size: 64px;
-  font-family: 'Tangerine', sans-serif;
-  background: rgba(255, 255, 255, 0);
-  border: hidden;
-  cursor: pointer;
-  min-height: 80px;
-  -webkit-transition: -webkit-box-shadow 0.1s;
-  transition: -webkit-box-shadow 0.1s;
-  transition: box-shadow 0.1s;
-  transition: box-shadow 0.1s, -webkit-box-shadow 0.1s;
-  -webkit-box-shadow: 0px 6px 0px -4px rgba(0, 0, 0, 0.7);
-          box-shadow: 0px 6px 0px -4px rgba(0, 0, 0, 0.7);
-}
-
-header #startGameBtn:hover {
-  -webkit-box-shadow: 0px 9px 0px -4px rgba(0, 0, 0, 0.7);
-          box-shadow: 0px 9px 0px -4px rgba(0, 0, 0, 0.7);
-}
-
 /************** Main ***************/
 main {
   display: -webkit-box;
@@ -180,6 +169,10 @@ main {
       -ms-flex-align: center;
           align-items: center;
   padding: 0 4px;
+}
+
+main > img {
+  max-width: 350px;
 }
 
 /* Centerpiece image */
@@ -218,9 +211,8 @@ main {
   font-size: 1.3rem;
   color: black;
   padding: 6px;
-  margin-top: 2px;
+  margin: 2px 4px 0px 4px;
   background: #eaeaea;
-  width: 100%;
   border-radius: 8px;
 }
 
@@ -282,7 +274,7 @@ main {
       -ms-flex-pack: center;
           justify-content: center;
   list-style-type: none;
-  margin-bottom: 5px;
+  margin-bottom: 8px;
   /* Specific li for Letter boxes */
 }
 
@@ -297,7 +289,6 @@ main {
   background: rgba(128, 128, 128, 0.7);
   font-size: 1.5em;
   font-weight: bold;
-  margin-top: 10px;
   padding: 16px 5px;
   text-align: center;
   max-width: 40px;

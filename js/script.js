@@ -145,16 +145,15 @@ function buttonClickListener() {
   }
 }
 
-// Get the mouse click guess
+// Get the click guess
 function clickGuess() {
   let userGuess = this.value.toLowerCase();
   // Disable the key
   this.disabled = true;
-  //Move into function for comparing keypress against selected word and more
   checkGuess(userGuess);
 }
 
-// Check the keypress
+// Check the keypress or click
 function checkGuess(userGuess) {
   // loop over letters in selectedWord to find matches with keypress
   for (let i = 0; i < selectedWord.length; i++) {
